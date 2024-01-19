@@ -1,0 +1,110 @@
+<header>
+    
+    <section class="header">
+           
+            
+
+            <div class="logo">
+                <img src="{{ asset('assets/images/logo/EveilKids.png') }}" alt="">
+            </div>
+
+            <div class="menu ">
+                <nav>
+                    <ul>
+                        <li><a href="/home">Accueil</a></li>                
+                        <li class="categories-dropdown">Jouets par Âge
+                            <ul class="categories-menu">
+                                                                
+                                <li><a href="{{ path('products_by_category', {'categoryId': 1}) }}">0 - 2 Ans</a></li>
+                                <li><a href="{{ path('products_by_category', {'categoryId': 2}) }}">2 - 4 Ans</a></li>
+                                <li><a href="{{ path('products_by_category', {'categoryId': 3}) }}">5 - 7 Ans</a></li>
+                                <li><a href="{{ path('products_by_category', {'categoryId': 4}) }}">8 - 12 Ans</a></li>                                 
+                                                                                   
+                            </ul>
+                        </li>
+                        <li class="categories-dropdown">Mobilité et Motricité
+                            <ul class="categories-menu">
+                                <li><a href="{{ path('products_by_category', {'categoryId': 5}) }}">Mobilier et Rangement</a></li>
+                                <li><a href="{{ path('products_by_category', {'categoryId': 6}) }}">Motricité globale</a></li>
+                                <li><a href="{{ path('products_by_category', {'categoryId': 7}) }}">Tapis educatifs</a></li>                                                                                
+                            </ul>
+                        </li>
+                        <li class="categories-dropdown">Puzzles
+                            <ul class="categories-menu">
+                                <li><a href="{{ path('products_by_category', {'categoryId': 8}) }}">Puzzles de 1 à 2 Ans</a></li>
+                                <li><a href="{{ path('products_by_category', {'categoryId': 9}) }}">Puzzles de 2 à 3 Ans</a></li>
+                                <li><a href="{{ path('products_by_category', {'categoryId': 10}) }}">Puzzles de 3 à 4 Ans</a></li>                                                                                
+                                <li><a href="{{ path('products_by_category', {'categoryId': 11}) }}">Puzzles de 4 à 5 Ans</a></li>                                                                                
+                            </ul>
+                        </li>
+                        <li class="categories-dropdown">Coffrets
+                            <ul class="categories-menu">
+                                <li><a href="{{ path('products_by_category', {'categoryId': 12}) }}">Coffrets pour les tout-petits</a></li>
+                                <li><a href="{{ path('products_by_category', {'categoryId': 13}) }}">Coffrets 3 à 6 Ans</a></li>
+                                <li><a href="{{ path('products_by_category', {'categoryId': 14}) }}">Coffrets 6 à 13 Ans</a></li>                                                                                
+                                <li><a href="{{ path('products_by_category', {'categoryId': 15}) }}">Coffrets dessin et peinture</a></li>                                                                                
+                            </ul>
+                        </li>
+                        <li class="categories-dropdown">Livres
+                            <ul class="categories-menu">
+                                <li><a href="{{ path('products_by_category', {'categoryId': 16}) }}">Livres montessori</a></li>                                                                                
+                                <li><a href="{{ path('products_by_category', {'categoryId': 17}) }}">Livres à toucher</a></li>
+                                <li><a href="{{ path('products_by_category', {'categoryId': 18}) }}">Livres sonores</a></li>
+                                <li><a href="{{ path('products_by_category', {'categoryId': 19}) }}">Livres animés</a></li>                                                                                
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="user-actions">
+                {% if app.user %}
+                    <div class="user-logged-in">
+                        <div class="logout">
+                            <a href="{{ path('app_logout') }}" class="insc">Se déconnecter</a>
+                        </div>
+                        <span> / </span>            
+                        <div class="profile">
+                            <a href="{{ path('app_user', {'id': app.user.id}) }}" class="insc">Mon profil</a>
+                        </div>
+                        <div class="panier-container">
+                            <div id="cartItemCount" class="cart-item-count"></div> 
+                                <a href="{{ path('app_cart') }}" class="panier">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    <span class="message-panier">Voir le panier</span>
+                                    
+                                </a>
+                           
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="user">
+                        <div class="inscription">
+                            <a href="{{ path('app_register') }}" class="insc">Inscription</a>
+                            <span> / </span>
+                            <a href="{{ path('app_login') }}" class="insc">Connexion</a>
+                        </div>
+                        <div class="panier-container">
+                             
+                                <div id="cartItemCount" class="cart-item-count"></div> 
+                            
+                            <a href="{{ path('app_cart') }}" class="panier">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                
+                                <span class="message-panier">Voir le panier</span>
+                            </a>
+                            
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            
+            </div>
+     
+        </div>
+    </section>
+    
+   
+</header>
+
+

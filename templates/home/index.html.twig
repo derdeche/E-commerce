@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Eveil Kids{% endblock %}
+
+
+
+
+
+{% block body %}
+
+  
+
+<div class="slider-container">
+    <div class="slider">
+        {% for slider in sliders %}
+            <section class="slide"  style="background-image: url('assets/images/sliders/{{ slider.getImageUrl() }}')">
+                <div class="bloc">
+                    <div class="sliderdescription-{{ loop.index }}">
+                        
+                        {{ slider.description }}
+                    </div>
+                    <div class="slidertitle-{{ loop.index }}">
+                        {{ slider.title }}
+                    </div>
+                    <div class="sliderbutton-position-{{ loop.index }}">
+                        <div class="sliderbutton-{{ loop.index }}">
+                            {{ slider.getButtonText() }}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endfor %}             
+    </div>
+    <div class="position1">
+        <button class="next-slide"> > </button>
+    </div>
+    <div class="position2">
+        <button class="prev-slide"> < </button>
+    </div>
+</div>
+
+<div class="arrow-btn">
+    <a href="#"><span class="fa-solid fa-arrow-up"></span></a>
+</div>
+
+
+
+<section class="bestseller">
+    {% for product in productsBestSeller %}
+        <h2>{{ product.name }}</h2>
+        <p>Catégorie : {{ product.category }}</p>
+        <p>Description : {{ product.description }}</p>
+        <p>Prix : {{ product.price/100 }} €</p>
+
+
+        <img src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}" style="width: 150px; height: 150px;">
+
+
+            
+    {% endfor %}
+
+</section>
+<section class="preference">
+    {% for product in productsPreference %}
+        <h2>{{ product.name }}</h2>
+        <p>Catégorie : {{ product.category }}</p>
+        <p>Description : {{ product.description  }}</p>
+        <p>Prix : {{ product.price/100 }} €</p>
+
+        <img src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}" style="width: 150px; height: 150px;">
+
+
+            
+    {% endfor %}
+
+</section>
+    
+    
+    
+{% endblock %}  
+ 

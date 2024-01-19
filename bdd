@@ -1,0 +1,202 @@
+-- --------------------------------------------------------
+-- Hôte:                         127.0.0.1
+-- Version du serveur:           8.0.30 - MySQL Community Server - GPL
+-- SE du serveur:                Win64
+-- HeidiSQL Version:             12.1.0.6537
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+-- Listage de la structure de la base pour eveilkids2
+CREATE DATABASE IF NOT EXISTS `eveilkids2` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `eveilkids2`;
+
+-- Listage de la structure de table eveilkids2. category
+CREATE TABLE IF NOT EXISTS `category` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Listage des données de la table eveilkids2.category : ~0 rows (environ)
+INSERT INTO `category` (`id`, `name`, `description`, `image_url`, `created_at`) VALUES
+	(1, '0 - 2 Ans', '<div>testtesttes</div>', '0-2.jpg', NULL),
+	(2, '2 - 4 Ans', NULL, '0-2.jpg', NULL);
+
+-- Listage de la structure de table eveilkids2. doctrine_migration_versions
+CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
+  `version` varchar(191) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `executed_at` datetime DEFAULT NULL,
+  `execution_time` int DEFAULT NULL,
+  PRIMARY KEY (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+
+-- Listage des données de la table eveilkids2.doctrine_migration_versions : ~0 rows (environ)
+INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
+	('DoctrineMigrations\\Version20240111095051', '2024-01-11 09:51:03', 53);
+
+-- Listage de la structure de table eveilkids2. messenger_messages
+CREATE TABLE IF NOT EXISTS `messenger_messages` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `body` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `headers` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue_name` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `available_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `delivered_at` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)',
+  PRIMARY KEY (`id`),
+  KEY `IDX_75EA56E0FB7336F0` (`queue_name`),
+  KEY `IDX_75EA56E0E3BD61CE` (`available_at`),
+  KEY `IDX_75EA56E016BA31DB` (`delivered_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Listage des données de la table eveilkids2.messenger_messages : ~2 rows (environ)
+INSERT INTO `messenger_messages` (`id`, `body`, `headers`, `queue_name`, `created_at`, `available_at`, `delivered_at`) VALUES
+	(1, 'O:36:\\"Symfony\\\\Component\\\\Messenger\\\\Envelope\\":2:{s:44:\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0stamps\\";a:1:{s:46:\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\";a:1:{i:0;O:46:\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\":1:{s:55:\\"\\0Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\0busName\\";s:21:\\"messenger.bus.default\\";}}}s:45:\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0message\\";O:51:\\"Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\":2:{s:60:\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0message\\";O:39:\\"Symfony\\\\Bridge\\\\Twig\\\\Mime\\\\TemplatedEmail\\":5:{i:0;s:41:\\"registration/confirmation_email.html.twig\\";i:1;N;i:2;a:3:{s:9:\\"signedUrl\\";s:168:\\"https://127.0.0.1:8000/verify/email?expires=1704971694&signature=QsfYUVBwh8WwH7eY5W4YrC2r%2BeA8IhNdwJmKnCywM6s%3D&token=kdxLwBvjv3Q8QMvRjEJrZqUC5xiwb4SmrDOa%2BHY2480%3D\\";s:19:\\"expiresAtMessageKey\\";s:26:\\"%count% hour|%count% hours\\";s:20:\\"expiresAtMessageData\\";a:1:{s:7:\\"%count%\\";i:1;}}i:3;a:6:{i:0;N;i:1;N;i:2;N;i:3;N;i:4;a:0:{}i:5;a:2:{i:0;O:37:\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\":2:{s:46:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0headers\\";a:3:{s:4:\\"from\\";a:1:{i:0;O:47:\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\":5:{s:50:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\";s:4:\\"From\\";s:56:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\";i:76;s:50:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\";N;s:53:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\";s:5:\\"utf-8\\";s:58:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\";a:1:{i:0;O:30:\\"Symfony\\\\Component\\\\Mime\\\\Address\\":2:{s:39:\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\";s:21:\\"contact@eveil-kids.fr\\";s:36:\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\";s:14:\\"Foued DERDECHE\\";}}}}s:2:\\"to\\";a:1:{i:0;O:47:\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\":5:{s:50:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\";s:2:\\"To\\";s:56:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\";i:76;s:50:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\";N;s:53:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\";s:5:\\"utf-8\\";s:58:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\";a:1:{i:0;O:30:\\"Symfony\\\\Component\\\\Mime\\\\Address\\":2:{s:39:\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\";s:15:\\"foued@gmail.com\\";s:36:\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\";s:0:\\"\\";}}}}s:7:\\"subject\\";a:1:{i:0;O:48:\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\UnstructuredHeader\\":5:{s:50:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\";s:7:\\"Subject\\";s:56:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\";i:76;s:50:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\";N;s:53:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\";s:5:\\"utf-8\\";s:55:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\UnstructuredHeader\\0value\\";s:25:\\"Please Confirm your Email\\";}}}s:49:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0lineLength\\";i:76;}i:1;N;}}i:4;N;}s:61:\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0envelope\\";N;}}', '[]', 'default', '2024-01-11 10:14:54', '2024-01-11 10:14:54', NULL),
+	(2, 'O:36:\\"Symfony\\\\Component\\\\Messenger\\\\Envelope\\":2:{s:44:\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0stamps\\";a:1:{s:46:\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\";a:1:{i:0;O:46:\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\":1:{s:55:\\"\\0Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\0busName\\";s:21:\\"messenger.bus.default\\";}}}s:45:\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0message\\";O:51:\\"Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\":2:{s:60:\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0message\\";O:39:\\"Symfony\\\\Bridge\\\\Twig\\\\Mime\\\\TemplatedEmail\\":5:{i:0;s:41:\\"registration/confirmation_email.html.twig\\";i:1;N;i:2;a:3:{s:9:\\"signedUrl\\";s:166:\\"https://127.0.0.1:8000/verify/email?expires=1704971818&signature=4ReONEpoYJqANP2FGbJ0P5iOno3AzK33Gxa8X8tpoJg%3D&token=q1ymOyeNl5oe8C%2F7yMvdqup1rrb8o6bkeQiGMWMYKK0%3D\\";s:19:\\"expiresAtMessageKey\\";s:26:\\"%count% hour|%count% hours\\";s:20:\\"expiresAtMessageData\\";a:1:{s:7:\\"%count%\\";i:1;}}i:3;a:6:{i:0;N;i:1;N;i:2;N;i:3;N;i:4;a:0:{}i:5;a:2:{i:0;O:37:\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\":2:{s:46:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0headers\\";a:3:{s:4:\\"from\\";a:1:{i:0;O:47:\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\":5:{s:50:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\";s:4:\\"From\\";s:56:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\";i:76;s:50:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\";N;s:53:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\";s:5:\\"utf-8\\";s:58:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\";a:1:{i:0;O:30:\\"Symfony\\\\Component\\\\Mime\\\\Address\\":2:{s:39:\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\";s:21:\\"contact@eveil-kids.fr\\";s:36:\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\";s:14:\\"Foued DERDECHE\\";}}}}s:2:\\"to\\";a:1:{i:0;O:47:\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\":5:{s:50:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\";s:2:\\"To\\";s:56:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\";i:76;s:50:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\";N;s:53:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\";s:5:\\"utf-8\\";s:58:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\";a:1:{i:0;O:30:\\"Symfony\\\\Component\\\\Mime\\\\Address\\":2:{s:39:\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\";s:15:\\"foued@gmail.com\\";s:36:\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\";s:0:\\"\\";}}}}s:7:\\"subject\\";a:1:{i:0;O:48:\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\UnstructuredHeader\\":5:{s:50:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\";s:7:\\"Subject\\";s:56:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\";i:76;s:50:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\";N;s:53:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\";s:5:\\"utf-8\\";s:55:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\UnstructuredHeader\\0value\\";s:25:\\"Please Confirm your Email\\";}}}s:49:\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0lineLength\\";i:76;}i:1;N;}}i:4;N;}s:61:\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0envelope\\";N;}}', '[]', 'default', '2024-01-11 10:16:58', '2024-01-11 10:16:58', NULL);
+
+-- Listage de la structure de table eveilkids2. order
+CREATE TABLE IF NOT EXISTS `order` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `delivery_adress` longtext COLLATE utf8mb4_unicode_ci,
+  `is_paid` tinyint(1) DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `carrier_price` int NOT NULL,
+  `carrier_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  PRIMARY KEY (`id`),
+  KEY `IDX_F5299398A76ED395` (`user_id`),
+  CONSTRAINT `FK_F5299398A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Listage des données de la table eveilkids2.order : ~0 rows (environ)
+
+-- Listage de la structure de table eveilkids2. order_detail
+CREATE TABLE IF NOT EXISTS `order_detail` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `orderdetails_id` int NOT NULL,
+  `product_id` int NOT NULL,
+  `taxe` int DEFAULT NULL,
+  `quantity` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_ED896F464A01DDC7` (`orderdetails_id`),
+  KEY `IDX_ED896F464584665A` (`product_id`),
+  CONSTRAINT `FK_ED896F464584665A` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
+  CONSTRAINT `FK_ED896F464A01DDC7` FOREIGN KEY (`orderdetails_id`) REFERENCES `order` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Listage des données de la table eveilkids2.order_detail : ~0 rows (environ)
+
+-- Listage de la structure de table eveilkids2. page
+CREATE TABLE IF NOT EXISTS `page` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_head` tinyint(1) DEFAULT NULL,
+  `is_foot` tinyint(1) DEFAULT NULL,
+  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Listage des données de la table eveilkids2.page : ~1 rows (environ)
+INSERT INTO `page` (`id`, `title`, `slug`, `content`, `is_head`, `is_foot`, `created_at`) VALUES
+	(2, 'bcvbvcb', 'bcvbvcb', '<div>xffhh</div>', 0, 1, '2024-01-13 10:28:09'),
+	(3, 'hfkjghskjgh', 'hfkjghskjgh', '<div>DBKJgbndskjnfvk</div>', 0, 1, '2024-01-13 10:29:05');
+
+-- Listage de la structure de table eveilkids2. product
+CREATE TABLE IF NOT EXISTS `product` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `category_id` int DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `additional_infos` longtext COLLATE utf8mb4_unicode_ci,
+  `more_description` longtext COLLATE utf8mb4_unicode_ci,
+  `stock` int DEFAULT NULL,
+  `solde_price` int DEFAULT NULL,
+  `brand` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_best_seller` tinyint(1) DEFAULT NULL,
+  `is_special_offer` tinyint(1) DEFAULT NULL,
+  `image_urls` longtext COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '(DC2Type:array)',
+  `created_at` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_new_collection` tinyint(1) DEFAULT NULL,
+  `is_preference` tinyint(1) DEFAULT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_D34A04AD12469DE2` (`category_id`),
+  CONSTRAINT `FK_D34A04AD12469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Listage des données de la table eveilkids2.product : ~3 rows (environ)
+INSERT INTO `product` (`id`, `category_id`, `name`, `additional_infos`, `more_description`, `stock`, `solde_price`, `brand`, `is_best_seller`, `is_special_offer`, `image_urls`, `created_at`, `slug`, `is_new_collection`, `is_preference`, `description`, `price`) VALUES
+	(3, 1, 'HOCHET ET ANNEAUX DE DENTITION', NULL, NULL, NULL, NULL, NULL, 0, 0, 'a:3:{i:0;s:45:"b8c32ed5bbeb22b4c3aebe01c5a83515c2ad071d.webp";i:1;s:45:"0ff9fcab5de6bb925a195e00f62b1ff5c77128b2.webp";i:2;s:45:"25f7082babbe7fc50c43a2ba59e0d2e56002e02e.webp";}', NULL, 'hochet-et-anneaux-de-dentition', 0, 0, '<div>Fabriqué à partir d\'un matériau sûr à base de riz japonais, le hochet au visage joyeux est livré avec trois anneaux à cliquetis mobiles pour stimuler la conscience sensorielle, et un anneau à mâcher pour les dents.<br><br></div><div>Dès la naissance</div>', 14.99),
+	(4, 1, 'TRIO DE HOCHETS GÉOMÉTRIQUES', NULL, NULL, NULL, NULL, NULL, 0, 0, 'a:4:{i:0;s:45:"d3464c23d2c672bb0ba03215f7221677be0c895a.webp";i:1;s:45:"80e16e98f1d4d260fbf2596f0481aa936dd0046e.webp";i:2;s:45:"b8a35814d1d2cc423469233b0432eea82b210751.avif";i:3;s:45:"bb80a834bb7c9f60a9bd90cf1167472b6d16cd18.webp";}', NULL, 'trio-de-hochets-geometriques', 0, 0, '<div>2 <strong>Le trio de hochets géométriques aux couleurs douces, a été soigneusement conçu pour s\'adapter parfaitement aux petites mains ; Lorsque ce trio de hochets sera secoué et que votre enfant jouera avec, il contribuera à développer ses capacités de coordination œil-main.<br></strong><br></div><div>Fabriqué à partir de matériaux à base de riz.<br><br></div><div><strong>Dès la naissance1</strong></div>', 9.99),
+	(5, 1, '3 BALLES SENSORIELLES « BLEUES »', NULL, NULL, NULL, NULL, NULL, 0, 0, 'a:4:{i:0;s:45:"03cc8b8d12fcf8258594328c5f85c8d6a933adbc.webp";i:1;s:45:"7944a2ecb80c2b9ca7951f405b072652b58e3205.webp";i:2;s:45:"f461eeb0e801759befd87f63b981b216b7327fbf.webp";i:3;s:45:"b82eb03036e47e42dc7ef091e5afb5bdd5a60e4a.webp";}', NULL, '3-balles-sensorielles-bleues', 0, 0, '<div><strong>Ce coffret de 3 balles sensorielles de différentes tailles, nervurées, à picots et aux textures douces éveille les sens de Bébé, développe sa dextérité et sa motricité fine.<br></strong><br></div><div><strong><br>L\'ÉVEIL N\'A JAMAIS ÉTÉ AUSSI DRÔLE !<br></strong><br></div><div>Les balles sensorielles « bleues » se prêtent à une multitude de jeux. Nervurée, lisse ou à picots, grande ou petite toutes les balles stimulent le sens du toucher, la dextérité et la coordination des mouvements de Bébé. Leur matière en plastique souple et légère soulage les petites dents de Bébé et garantit une hygiène parfaite !<br><br></div><div>Adapté pour les petits dès 6 mois, ce coffret de 3 balles sensorielles « bleues » attire l\'attention de Bébé qui sera intrigué par ces jolies couleurs vives et ses textures. Leur petite taille facilite la prise en main.<br><br></div><div><br>DANS CE COFFRET, VOUS RETROUVEREZ DIFFÉRENTES BALLES SENSORIELLES :<br><br></div><div>2 petites balles nervurées au toucher velouté pour plus de douceur et 1 grande balle bicolore, à picots tendres pour les massages ou parties de chatouilles.&nbsp;<br>De nombreuses occasions pour jouer, s\'amuser et partager des moments de complicité en famille !<br><br></div><div><strong>Diamètre : 15 et 8 cm.<br></strong><br></div><div><strong>Dès 6 mois</strong></div>', 8.99);
+
+-- Listage de la structure de table eveilkids2. slider
+CREATE TABLE IF NOT EXISTS `slider` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `button_text` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `button_link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `image_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Listage des données de la table eveilkids2.slider : ~0 rows (environ)
+INSERT INTO `slider` (`id`, `title`, `description`, `button_text`, `button_link`, `created_at`, `image_url`) VALUES
+	(1, 'JOUETS EDUCATIFS', 'nouvelle collection 2024', 'voir plus', 'voir plus', '2024-01-11 13:58:16', 'af5f2ef6878e4088689337e20a9c7b1c23e9e81f.jpg');
+
+-- Listage de la structure de table eveilkids2. slider_product
+CREATE TABLE IF NOT EXISTS `slider_product` (
+  `slider_id` int NOT NULL,
+  `product_id` int NOT NULL,
+  PRIMARY KEY (`slider_id`,`product_id`),
+  KEY `IDX_ADB121012CCC9638` (`slider_id`),
+  KEY `IDX_ADB121014584665A` (`product_id`),
+  CONSTRAINT `FK_ADB121012CCC9638` FOREIGN KEY (`slider_id`) REFERENCES `slider` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_ADB121014584665A` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Listage des données de la table eveilkids2.slider_product : ~0 rows (environ)
+
+-- Listage de la structure de table eveilkids2. user
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `roles` json NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_verified` tinyint(1) NOT NULL,
+  `pseudo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `updated_at` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `adress` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Listage des données de la table eveilkids2.user : ~2 rows (environ)
+INSERT INTO `user` (`id`, `email`, `roles`, `password`, `is_verified`, `pseudo`, `created_at`, `updated_at`, `adress`) VALUES
+	(16, 'derdeche@gmail.com', '[]', '$2y$13$4D2Y380uFr8xdjQ5ZndsoOAA9BAI7QWsmfXztHw1QUMwWbU8CvyCO', 1, 'foued', '2024-01-11 15:52:49', '2024-01-11 15:52:49', NULL),
+	(18, 'foued@gmail.com', '["ROLE_USER", "ROLE_ADMIN"]', '$2y$13$Yst9UBRX3pQcdoI1m9sPxuK6zxm2GtDeFZiwuNoDQvk4.Tbx00Le.', 1, 'foued', '2024-01-12 12:43:23', '2024-01-12 12:43:23', NULL);
+
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;

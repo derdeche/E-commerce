@@ -1,0 +1,86 @@
+<footer>
+    <section class="footer1">
+        <div class="bloc1">
+            <div class="logo-footer">
+                <img src="{{ asset('assets/images/logo/EveilKids.png') }}" alt="Eveil-Kids">
+            </div>
+            <div class="para">
+                <p>Retrouvez tous les jouets</p>
+            </div>
+        </div>
+
+        <div class="bloc2">
+            <div class="liens">
+              <p>Liens Utiles</p>
+            </div>
+            <ul>
+                {# {% for page in app.session.get('footerPages') %}
+                   <li class="lien1">
+                        <a href="/page/{{page.slug}}">{{page.title}}</a>
+                   </li>
+                {% endfor %} #}
+                {% if app.session.has('footerPages') %}
+                    {% for page in app.session.get('footerPages') %}
+                        <li class="lien1">
+                            <a href="{{ path('app_page', {'slug': page.slug}) }}">{{ page.title }}</a>
+                        </li>                    
+                    {% endfor %}
+                {% endif %}
+
+            </ul>
+        </div>
+
+        <div class="bloc3">
+            <ul>
+                <li class="liens">
+                    <p>Les Catégories</p>
+                </li>
+                <li class="lien1">
+                    <a href="#">Catégorie 1</a>
+                </li>
+                <li class="lien1">
+                    <a href="#">Catégorie 2</a>
+                </li>
+                <li class="lien1">
+                    <a href="#">Catégorie 3</a>
+                </li>
+                <li class="lien1">
+                    <a href="#">Catégorie 4</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bloc4">
+            <ul>
+                <li class="liens">
+                    <p>Contact infos</p>
+                </li>
+                <li class="lien1">
+                    <span>
+                        <i class="fa-solid fa-location-dot"></i>{{ ' ' }} 202 Avenue de Colmar, 67100 Strasbourg
+                    </span>
+                </li>
+                <li class="lien1">
+                    <span>
+                        <i class="fa-solid fa-envelope"></i>{{ ' ' }} contact@Eveil-Kids.fr
+                    </span>
+                </li>
+                <li class="lien1">
+                    <span>
+                        <i class="fa-solid fa-phone"></i>{{ ' ' }} +33 7 60 60 60 60
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+    </section>
+    <section class="footer2">
+        <div class="copyright">
+            <span> ©2024 All rights reserved by Foued DERDECHE</span>
+        </div>
+
+        <div class="payment-methods">
+            <span>MOYENS DE PAIEMENT </span>
+        </div>
+    </section>
+</footer>
