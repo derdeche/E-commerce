@@ -10,7 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class UserController extends AbstractController
 {
-    #[Route('/user/{id}', name: 'app_user', methods: ['GET', 'POST'])]
+    #[Route('/profil/{id}', name: 'app_user', methods: ['GET', 'POST'])]
     public function index(int $id, EntityManagerInterface $entityManager): Response
     {
         $user = $entityManager->getRepository(User::class)->find($id);
