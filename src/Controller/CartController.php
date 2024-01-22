@@ -27,20 +27,13 @@ class CartController extends AbstractController
             'controller_name' => 'CartController',
             'cart' => $cart,
             'cartItemCount' => $cartItemCount,
+            
         ]);
     }
     
+    
 
-    // #[Route('/panier/ajout/{productId}/{count}', name: 'app_add_to_cart')]
-    // public function addToCart(string $productId, $count = 1): Response
-    // {
-    //     $this->cartService->addToCart($productId,$count);
-    //     // $this->addFlash('success', 'Produit ajouté avec succès au panier.');
-    //     // dd($this->cartService->getCartDetails());
-    //     return $this->redirectToRoute('app_home');
-        
-        
-    // }
+   
     #[Route('/panier/ajout/{productId}/{count}', name: 'app_add_to_cart')]
     public function addToCart(Request $request, string $productId, $count = 1): Response
     {
@@ -53,10 +46,11 @@ class CartController extends AbstractController
         if ($referer) {
             return $this->redirect($referer);
         }
-
+        
         // Sinon, rediriger vers une URL par défaut 
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_cart');
     }
+    
     // ***********************************************
     #[Route('/panier/nombre', name: 'app_cart_count', methods: ['GET'])]
     public function getCartItemCount(): JsonResponse
