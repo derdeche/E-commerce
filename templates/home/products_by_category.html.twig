@@ -1,41 +1,39 @@
 {% extends 'base.html.twig' %}
-
 {% block body %}
+<div class="category-header">
     <h3>Produits de la catégorie {{ category.name }}</h3>
-    <a href="{{ path('products_by_category', {'categoryId': categoryId, 'sort_by': 'asc', 'prix_max': app.request.query.get('prix_max')}) }}">Tri croissant</a>
-    <a href="{{ path('products_by_category', {'categoryId': categoryId, 'sort_by': 'desc', 'prix_max': app.request.query.get('prix_max')}) }}">Tri décroissant</a>
+</div>
 
+<div class="sort-links">
+    <div>
+        <a href="{{ path('products_by_category', {'categoryId': categoryId, 'sort_by': 'asc'}) }}">Tri croissant</a>
+    </div>
+    <div>
+        <a href="{{ path('products_by_category', {'categoryId': categoryId, 'sort_by': 'desc'}) }}">Tri décroissant</a>
+    </div>
+</div>
 
-            {# <form method="get" action="{{ path('products_by_category', {'categoryId': categoryId}) }}" id="filterForm">
-                <select name="prix_filter" onchange="submitFormWithFilter(this.value)">
-                   
-                
-                    <option value="all" {% if not app.request.query.get('prix_filter') %}selected{% endif %}>Tous les produits</option>
-                    <option value="inf" {% if app.request.query.get('prix_filter') == 'inf' %}selected{% endif %}>Prix inférieur à 9.99€</option>
-                    <option value="sup" {% if app.request.query.get('prix_filter') == 'sup' %}selected{% endif %}>Prix supérieur ou égal à 9.99€</option>
-                </select>
-            </form>
-            
-            
-           
-            
-            
-    <ul>
-        {% for product in products %}
-            <li>{{ product.name }}  {{ product.price }} {{'€'}}</li><br>
-            <li>{{ product.description}}</li><br>
-            <li>{{ product.moreDescription}}</li><br>
+<ul class="product-list">
+    {% for product in product %}
+    <li class="product-item">
+        <div class="product-details">
+            <div class="product-name">{{ product.name }}</div>
+            <div class="product-price">{{ product.price }} {{'€'}}</div>
+            <div class="product-description">{{ product.description }}</div>
+            <div class="product-moreDescription">{{ product.moreDescription }}</div>
+        </div>
+        <a href="{{ path('app_product_by_slug', {'slug': product.slug }) }}">Voir les détails du produit</a>
+        <div class="product-image">
+            <img src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}">
+        </div>
+        <div class="add-to-cart">
+            <a href="{{ path('app_add_to_cart', {'productId': product.id, 'count': 1}) }}">Ajouter au panier</a>
+        </div>
+        </li>
+        {% endfor %}
+    </ul>
+      
 
-            
-            <li><a href="{{ path('app_add_to_cart', {'productId': product.id, 'count': 1}) }}">Ajouter au panier</a></li>
-            
-
-            
-            
-
-
-            {% endfor %}
-        </ul>
-        {% endblock %}
+{% endblock %}
 
 
