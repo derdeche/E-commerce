@@ -33,4 +33,7 @@ services:
     # services.yaml
 
     # ...
+    App\Controller\HomeController:
+        arguments:
+            $entityManager: '@doctrine.orm.entity_manager'
 
