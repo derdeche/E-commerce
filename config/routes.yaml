@@ -3,6 +3,7 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
 products_by_category:
     path: /produits-de-la-categorie/{categoryId}
     controller: 'App\Controller\HomeController::productsByCategory'
@@ -12,3 +13,11 @@ app_add_to_cart:
     path: '/panier/ajout/{productId}/{count}'
     controller: 'App\Controller\CartController::addToCart'
 
+app_product_by_slug:
+    path: '/produit/{slug}'
+    controller: 'App\Controller\HomeController::showProductBySlug'
+
+
+add_to_cart:
+    path: '/panier/ajout/{productId}'
+    controller: 'App\Controller\CartController::addToCart'
