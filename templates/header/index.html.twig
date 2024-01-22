@@ -61,17 +61,19 @@
                 {% if app.user %}
                     <div class="user-logged-in">
                         <div class="logout">
-                            <a href="{{ path('app_logout') }}" class="insc">Se déconnecter</a>
+                            <a href="{{ path('app_logout') }}" class="insc"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                <span class="message-panier">Se déconnecter</span></a>
                         </div>
                         <span> / </span>            
                         <div class="profile">
-                            <a href="{{ path('app_user', {'id': app.user.id}) }}" class="insc">Mon profil</a>
+                            <a href="{{ path('app_user', {'id': app.user.id}) }}" class="insc"><i class="fa-solid fa-user"></i>
+                                <span class="message-panier">Mon profil</span></a>
                         </div>
                         <div class="panier-container">
                             <div id="cartItemCount" class="cart-item-count"></div> 
                                 <a href="{{ path('app_cart') }}" class="panier">
                                     <i class="fa-solid fa-cart-shopping"></i>
-                                    <span class="message-panier">Voir le panier</span>
+                                    <span class="message-panier">Voir mon panier</span>
                                     
                                 </a>
                            
@@ -80,9 +82,9 @@
                 {% else %}
                     <div class="user">
                         <div class="inscription">
-                            <a href="{{ path('app_register') }}" class="insc">Inscription</a>
+                            <a href="{{ path('app_register') }}" class="insc">S'inscrire</a>
                             <span> / </span>
-                            <a href="{{ path('app_login') }}" class="insc">Connexion</a>
+                            <a href="{{ path('app_login') }}" class="insc">Se connecter</a>
                         </div>
                         <div class="panier-container">
                              
@@ -91,7 +93,7 @@
                             <a href="{{ path('app_cart') }}" class="panier">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 
-                                <span class="message-panier">Voir le panier</span>
+                                <span class="message-panier">Voir mon panier</span>
                             </a>
                             
                         </div>
