@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{# {{ include('address/_form.html.twig') }}   #}
+{% block title %}Nouvelle Adresse{% endblock %}
+
+    
+    {# {% block body %}
+    <h1>Create new Address</h1>
+    
+    {{ form_start(form) }}
+
+    {{ form_end(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+
+
+
+    <a href="{{ path('app_address_index') }}">back to list</a>
+    {% endblock %} #}
+    {% block body %}
+    <h1>Create new Address</h1>
+    
+    {{ form_start(form) }}
+    
+    {{ form_row(form.client_name) }}
+    {{ form_row(form.street) }}
+    {{ form_row(form.code_postal) }}
+    {{ form_row(form.city) }}
+    {{ form_row(form.state) }}
+    {{ form_row(form.more_details) }}
+    
+    
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+
+    {% endblock %}
+    
+    {# <a href="{{ path('app_address_show') }}">Back to list</a> #}
