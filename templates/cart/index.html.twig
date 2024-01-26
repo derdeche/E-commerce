@@ -2,94 +2,83 @@
 
             {% extends 'base.html.twig' %}
 
-{% block title %}Eveil Kids | Panier {% endblock %}
+            {% block title %}Eveil Kids | Panier {% endblock %}
 
-{% block body %}
+            {% block body %}
 
-{% if cart.items|length > 0 %}
-    
+            {% if cart.items|length > 0 %}
+                
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="">&nbsp;</th>
-                    <th class="">Produit</th>
-                    <th class="">Prix</th>
-                    <th class="">Quantité</th>
-                    <th class="">Total</th>
-                    <th class="">Supprimer</th>
-                </tr>
-            </thead>
-            <tbody>
-        
-                {% for item in cart.items %}
-                <tr>
-                    <td class=""><a><img width="50" alt=""
-                                src="/assets/images/products/{{ item.product.imageUrls[0] }}"></a>
-                    </td>
-                    {{ item.product.name }}
-                    <td >
-                        {{ item.product.price  }} {{'€'}}
-                    </td>
-                    <td >
-                        <div class="">
-                            <a href="/panier/suppression/{{item.product.id}}/1">
-                                <input type="button" value="-" class="minus">
-                            </a>
-                            <input type="text" name="quantity" value="{{ item.quantity }}" title="" size="" class="">
-                            <a href="/panier/ajout/{{item.product.id}}/1">
-                                <input type="button" value="+" class="">
-                            </a>
-                        </div>
-                    </td>
-                    <td data-title="Total" class="product-subtotal">
-                        {{ item.sub_total  }} </td>
-                    <td data-title="Remove" class="product-remove">
-                        <a href="/panier/suppression/{{item.product.id}}/{{item.quantity}}">
-                            <i class="ti-close">x</i>
-                        </a>
-                    </td>
-                </tr>
-                {% endfor%}
-        
-            </tbody>
-        </table>
-        
-        
-        <div class="">
-            <h6>Prix Total</h6>
-        </div>
-        
-                        <td class="">total</td>
-                        <td class="">{{ (cart.sub_total)   }}</td>
-                   
-                        <td class="">Livraison</td>
-                        <td class="">Livraison gratuite</td>
-                    </tr>
-                    <tr>
-                        <td class="">Total</td>
-                        <td class=""><strong>{{ (cart.sub_total)    }}</strong></td>
-                    </tr>    </table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="">&nbsp;</th>
+                                <th class="">Produit</th>
+                                <th class="">Prix</th>
+                                <th class="">Quantité</th>
+                                <th class="">Total</th>
+                                <th class="">Supprimer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                    
+                            {% for item in cart.items %}
+                            <tr>
+                                <td class=""><a><img width="50" alt=""
+                                            src="/assets/images/products/{{ item.product.imageUrls[0] }}"></a>
+                                </td>
+                                {{ item.product.name }}
+                                <td >
+                                    {{ item.product.price  }} {{'€'}}
+                                </td>
+                                <td >
+                                    <div class="">
+                                        <a href="/panier/suppression/{{item.product.id}}/1">
+                                            <input type="button" value="-" class="minus">
+                                        </a>
+                                        <input type="text" name="quantity" value="{{ item.quantity }}" title="" size="" class="">
+                                        <a href="/panier/ajout/{{item.product.id}}/1">
+                                            <input type="button" value="+" class="">
+                                        </a>
+                                    </div>
+                                </td>
+                                <td data-title="Total" class="product-subtotal">
+                                    {{ item.sub_total  }} </td>
+                                <td data-title="Remove" class="product-remove">
+                                    <a href="/panier/suppression/{{item.product.id}}/{{item.quantity}}">
+                                        <i class="ti-close">x</i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                    
+                        </tbody>
+                    </table>
+                    
+                    <div class="">
+                        <h6>Prix Total</h6>
+                    </div>
+                    
+                    <table>
+                        <tr>
+                            <td class="">Total</td>
+                            <td class="">{{ cart.sub_total }}</td>
+                        </tr>
+                        <tr>
+                            <td class="">Livraison</td>
+                            <td class="">Livraison gratuite</td>
+                        </tr>
+                        <tr>
+                            <td class="">Total</td>
+                            <td class=""><strong>{{ cart.sub_total }}</strong></td>
+                        </tr>
+                    </table>
+                    <a href="{{ path('app_checkout')}}">
+                        <button type="button" class="validate-cart-button">Validate Cart</button>
+                    </a>
+                
+            {% else %}
+                <p>Votre panier est vide.</p>
+            {% endif %}
 
-    <div class="">
-        <h6>Prix Total</h6>
-        <table>
-            <tr>
-                <td class="">total</td>
-                <td class="">{{ cart.sub_total }}</td>
-            </tr>
-            <tr>
-                <td class="">Livraison</td>
-                <td class="">Livraison gratuite</td>
-            </tr>
-            <tr>
-                <td class="">Total</td>
-                <td class=""><strong>{{ cart.sub_total }}</strong></td>
-            </tr>
-        </table>
-    
-{% else %}
-    <p>Votre panier est vide.</p>
-{% endif %}
-
-{% endblock %}
+            {% endblock %}
