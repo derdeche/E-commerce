@@ -21,3 +21,14 @@ app_product_by_slug:
 add_to_cart:
     path: '/panier/ajout/{productId}'
     controller: 'App\Controller\CartController::addToCart'
+
+
+# app_reset_password:
+#     path: /reset/{token}
+#     controller: App\Controller\ResetPasswordController::reset
+
+# app_forgot_password_request:
+#     path: /reset-password
+#     controller: App\Controller\ResetPasswordController::request
+
+
