@@ -38,6 +38,9 @@ class CartController extends AbstractController
     public function addToCart(Request $request, string $productId, $count = 1): Response
     {
         $this->cartService->addToCart($productId, $count);
+        
+        $this->addFlash('success', 'Le produit a été ajoutée avec succès.');
+            $this->addFlash('success-class', 'hide-message');
 
         // Récupérer l'URL de la page précédente
         $referer = $request->headers->get('referer');
