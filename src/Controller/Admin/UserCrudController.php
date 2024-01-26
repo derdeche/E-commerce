@@ -13,6 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -45,7 +46,8 @@ class UserCrudController extends AbstractCrudController
             DateTimeField::new('updatedAt')->hideOnForm()->setFormat('yyyy-MM-dd HH:mm:ss'),
             TextField::new('pseudo'),
             EmailField::new('email'),           
-           
+            AssociationField::new('addresses'),
+
             ChoiceField::new('roles')
             ->setChoices(['ROLE_USER' => 'ROLE_USER', 'ROLE_ADMIN' => 'ROLE_ADMIN'])
             ->allowMultipleChoices()
