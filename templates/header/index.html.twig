@@ -5,7 +5,7 @@
             
 
             <div class="logo">
-                <img src="{{ asset('assets/images/logo/EveilKids.png') }}" alt="">
+                <img src="{{ asset('assets/images/logo/EveilKids-removebg-preview.svg') }}" alt="">
             </div>
 
             <div class="menu ">
@@ -91,13 +91,17 @@
                                 <div id="cartItemCount" class="cart-item-count"></div> 
                             
                             <a href="{{ path('app_cart') }}" class="panier">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                
+                                <i class="fa-solid fa-cart-shopping"></i>                                
                                 <span class="message-panier">Voir mon panier</span>
                             </a>
                             
                         </div>
                     </div>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN')%}
+                <div class="administrateur">
+                    <li><a href="{{path('admin')}}">Espace administration</a></li>
+                </div>
                 {% endif %}
             </div>
             
