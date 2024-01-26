@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Page;
 use App\Entity\User;
 use App\Entity\Slider;
+use App\Entity\Address;
 use App\Entity\Product;
 use App\Entity\Sliders;
 use App\Entity\Category;
@@ -54,5 +55,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
         yield MenuItem::linkToCrud('Sliders', 'fas fa-image', Slider::class);
         yield MenuItem::linkToCrud('Pages', 'fas fa-file', Page::class);
+        yield MenuItem::linkToCrud('Addresses', 'fas fa-address-card', Address::class);
     }
 }
+
+
