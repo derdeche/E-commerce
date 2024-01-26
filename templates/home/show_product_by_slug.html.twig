@@ -8,6 +8,7 @@
         <li>{{ product.name }} - {{ product.price }} €</li>
         <li>{{ product.description }}</li>
     </ul>
+    <a href="{{ path('app_cart') }}" class="">Voir mon panier</a>
     {{ form_start(form, {'attr': {'class': 'add-to-cart-form'}}) }}
     {{ form_widget(form.quantity) }}
     <button type="submit" class="add-to-cart-button">Ajouter au panier</button>
