@@ -53,19 +53,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $adress = null;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class)]
+    private Collection $addresses;
+
+   
+
+   
 
     public function __construct() {
         $this->createdAt = new \DateTimeImmutable();
         $this->orders = new ArrayCollection();
         $this->setUpdatedAt (new \DateTimeImmutable);
+        $this->addresses = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
     }
+  
 
     public function getEmail(): ?string
     {
@@ -183,17 +189,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     
 
-    public function getAdress(): ?string
-    {
-        return $this->adress;
-    }
-
-    public function setAdress(?string $adress): static
-    {
-        $this->adress = $adress;
-
-        return $this;
-    }
 
      /**
      * @return Collection<int, order>
@@ -224,4 +219,47 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Address>
+     */
+    public function getAddresses(): Collection
+    {
+        return $this->addresses;
+    }
+
+    public function addAddress(Address $address): static
+    {
+        if (!$this->addresses->contains($address)) {
+            $this->addresses->add($address);
+            $address->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAddress(Address $address): static
+    {
+        if ($this->addresses->removeElement($address)) {
+            // set the owning side to null (unless already changed)
+            if ($address->getUser() === $this) {
+                $address->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->pseudo;
+    }
+   
+
+
+
+
+   
+
+ 
 }
