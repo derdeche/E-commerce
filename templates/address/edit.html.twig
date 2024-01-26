@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+
+
+{# {% block body %}
+    <h1>Edit Address</h1> #}
+
+    {# {{ include('address/_form.html.twig', {'button_label': 'Update'}) }} #}
+
+    {# <a href="{{ path('app_address_index') }}">back to list</a> #}
+    {# {{ include('address/_form.html.twig', {'button_label': 'Update'}) }} #}
+    
+    {# <a href="{{ path('app_address_index') }}">back to list</a> #}
+
+{% block title %}Modifier mon adresse{% endblock %}
+
+{% block body %}
+    <h1>Modifier mon adresse</h1>
+
+    {{ form_start(form) }}
+    
+    {{ form_row(form.client_name) }}
+    {{ form_row(form.street) }}
+    {{ form_row(form.code_postal) }}
+    {{ form_row(form.city) }}
+    {{ form_row(form.state) }}
+    {{ form_row(form.more_details) }}
+    
+{#     
+    <button class="btn">{{ button_label|default('Save') }}</button> #}
+    {{ form_row(form._token) }}
+<button type="submit" class="btn">Save</button>
+{{ form_end(form) }}
+   
+    {% endblock %}
+    
+    
+        {# {{ include('address/_delete_form.html.twig') }} #}
+
+    {# {{ include('address/_delete_form.html.twig') }} #}
+{# {% endblock %} #}
