@@ -48,7 +48,18 @@
             
             
         </header>
-        
+        {# message flash #}
+        {% for flashMessage in app.flashes('success') %}
+            <div class="alert alert-success-custom alert-fade-out">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}    
+            {# script supprime l'espace blanc qui persiste apres le message flash #}
+        <script>
+            setTimeout(function() {
+                document.querySelector('.alert-success-custom').style.display = 'none';
+            }, 3000); 
+        </script>
         <main >
             {% block body %}
             
