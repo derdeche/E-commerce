@@ -37,3 +37,16 @@ services:
         arguments:
             $entityManager: '@doctrine.orm.entity_manager'
 
+
+    # App\Repository\ResetPasswordRequestRepository:
+    #     arguments:
+    #         $manager: '@doctrine.orm.entity_manager'
+    #     public: true
+
+
+
+    # App\EventListener\AccessDeniedListener:
+    #     arguments:
+    #         $router: '@router'
+    #     tags:
+    #         - { name: 'kernel.event_listener', event: 'kernel.exception', method: 'onAccessDenied' }
