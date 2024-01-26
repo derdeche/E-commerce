@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Eveil Kids | Validation panier{% endblock %}
+
+{% block body %}
+
+                
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="">&nbsp;</th>
+                                <th class="">Produit</th>
+                                <th class="">Prix</th>
+                                <th class="">Quantité</th>
+                                <th class="">Total</th>
+                                <th class="">Supprimer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                    
+                            {% for item in cart.items %}
+                            <tr>
+                                
+                                {{ item.product.name }} 
+                                {{ item.product.price  }} {{'€'}} X {{ item.quantity}} 
+                               
+                                <div class="">
+                                    <h6>Prix Total</h6>
+                                </div>
+                                
+                                <td data-title="Total" class="product-subtotal">
+                                    {{ item.sub_total  }} </td>
+                                
+                            </tr>
+                            {% endfor %}
+                    
+                        </tbody>
+                    </table>
+                    
+                    
+                    <table>
+                        <tr>
+                            <td class="">Total</td>
+                            <td class="">{{ cart.sub_total }}</td>
+                        </tr>
+                        <tr>
+                            <td class="">Livraison</td>
+                            <td class="">Livraison en France uniquement( Livraison gratuite)</td>
+                        </tr>
+                        <tr>
+                            <td class="">Total</td>
+                            <td class=""><strong>{{ cart.sub_total }}</strong></td>
+                        </tr>
+                    </table>
+                    <a href="">
+                        <button type="button" class="validate-cart-button">Valider la commande</button>
+                    </a>
+                
+
+{% endblock %}
