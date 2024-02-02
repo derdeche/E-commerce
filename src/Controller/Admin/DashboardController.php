@@ -4,11 +4,13 @@ namespace App\Controller\Admin;
 
 use App\Entity\Page;
 use App\Entity\User;
+use App\Entity\Order;
 use App\Entity\Slider;
 use App\Entity\Address;
 use App\Entity\Product;
 use App\Entity\Sliders;
 use App\Entity\Category;
+use App\Entity\OrderDetail;
 use Symfony\Component\HttpFoundation\Response;
 use App\Controller\Admin\ProductCrudController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -56,6 +58,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Sliders', 'fas fa-image', Slider::class);
         yield MenuItem::linkToCrud('Pages', 'fas fa-file', Page::class);
         yield MenuItem::linkToCrud('Addresses', 'fas fa-address-card', Address::class);
+        yield MenuItem::linkToCrud('Order', 'fas fa-shopping-cart', Order::class);
+        yield MenuItem::linkToCrud('OrderDetails', 'fas fa-shopping-cart', OrderDetail::class);
     }
 }
 

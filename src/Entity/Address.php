@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: AddressRepository::class)]
 class Address
 {
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -33,8 +34,6 @@ class Address
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $more_details = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updated_at = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
@@ -42,6 +41,7 @@ class Address
     #[ORM\ManyToOne(inversedBy: 'addresses')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+    
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $address_type = null;
@@ -129,17 +129,7 @@ class Address
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updated_at;
-    }
-
-    public function setUpdatedAt(?\DateTimeImmutable $updated_at): static
-    {
-        $this->updated_at = $updated_at;
-
-        return $this;
-    }
+   
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
@@ -182,4 +172,6 @@ class Address
 
         return $this;
     }
+
+
 }

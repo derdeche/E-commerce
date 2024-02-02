@@ -29,9 +29,7 @@ class HomeController extends AbstractController
         $this->cartService = $cartService;
         $this->entityManager = $entityManager;
 
-      
         
-
     }
 
     #[Route('/home', name: 'app_home')]
@@ -42,13 +40,11 @@ class HomeController extends AbstractController
         Request $request,
         CategoryRepository $categoryRepo,
         
-
         ): Response
     {
         $session = $request->getSession();
         $sliders = $sliderRepo->findAll();      
         $category = $categoryRepo->findAll();
-        // $products = $productRepo->findAll();
 
         $productsBestSeller = $productRepo->findBy(['isBestSeller'=>true]);
         $productsSpecialOffer = $productRepo->findBy(['isSpecialOffer'=>true]);
@@ -65,7 +61,6 @@ class HomeController extends AbstractController
             'productsSpecialOffer' => $productsSpecialOffer,
             'productsNewCollection' => $productsNewCollection,
             'productsPreference' => $productsPreference,
-            // 'product' => $products,
             'categories' => $category,
             'cart' => $cart,
         ]);
@@ -73,12 +68,11 @@ class HomeController extends AbstractController
   
 
  
-                /**
-         * @Route("/produits-de-la-categorie/{categoryId}", name="products_by_category")
-         */
+                
+         #[Route("/produits-de-la-categorie/{categoryId}", name:"products_by_category")]
+         
         public function productsByCategory(
             CategoryRepository $categoryRepo,
-            ProductRepository $productRepo,
             Request $request,
             $categoryId
         ): Response {
@@ -108,6 +102,7 @@ class HomeController extends AbstractController
                 'category' => $category,
                 'product' => $products,
             ]);
+
         }
 
 
@@ -133,9 +128,9 @@ class HomeController extends AbstractController
         // }
 
         
-                /**
-         * @Route("/produit/{slug}", name="app_product_by_slug")
-         */
+                
+        #[Route("/produit/{slug}", name:"app_product_by_slug")]
+         
         public function showProductBySlug(Request $request, string $slug): Response
         {
             $productRepository = $this->entityManager->getRepository(Product::class);

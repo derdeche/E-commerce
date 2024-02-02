@@ -13,52 +13,28 @@ class OrderDetail
     #[ORM\Column]
     private ?int $id = null;
 
-    
+    #[ORM\ManyToOne(inversedBy: 'orderDetails')]
+    private ?Order $order = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $taxe = null;
-
-    #[ORM\ManyToOne(inversedBy: 'orderdetails')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Order $orderdetails = null;
-
-    #[ORM\ManyToOne(inversedBy: 'products')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(inversedBy: 'orderDetails')]
     private ?Product $product = null;
 
     #[ORM\Column]
     private ?int $quantity = null;
-
-     
-   
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-
-
-    public function getTaxe(): ?int
+    public function getOrder(): ?Order
     {
-        return $this->taxe;
+        return $this->order;
     }
 
-    public function setTaxe(?int $taxe): static
+    public function setOrder(?Order $order): static
     {
-        $this->taxe = $taxe;
-
-        return $this;
-    }
-
-    public function getOrderdetails(): ?Order
-    {
-        return $this->orderdetails;
-    }
-
-    public function setOrderdetails(?Order $orderdetails): static
-    {
-        $this->orderdetails = $orderdetails;
+        $this->order = $order;
 
         return $this;
     }
@@ -80,22 +56,17 @@ class OrderDetail
         return $this->quantity;
     }
 
-    public function setQuantity(int $quantity): static
+    public function setQuantity(?int $quantity): static
     {
         $this->quantity = $quantity;
 
         return $this;
     }
+    public function getTotalCost(): float
+    {
+        $productPrice = $this->getProduct()->getPrice();
+        $quantity = $this->getQuantity();
 
- 
-
-    
-
-    
-
-   
-
-   
-
-  
+        return $productPrice * $quantity;
+    }
 }

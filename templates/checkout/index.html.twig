@@ -21,7 +21,9 @@
                     
                             {% for item in cart.items %}
                             <tr>
-                                
+                                <td class=""><a><img width="50" alt=""
+                                    src="/assets/images/products/{{ item.product.imageUrls[0] }}"></a>
+                                </td>
                                 {{ item.product.name }} 
                                 {{ item.product.price  }} {{'€'}} X {{ item.quantity}} 
                                
@@ -53,9 +55,47 @@
                             <td class=""><strong>{{ cart.sub_total }}</strong></td>
                         </tr>
                     </table>
-                    <a href="">
-                        <button type="button" class="validate-cart-button">Valider la commande</button>
-                    </a>
-                
+                    <h4>Adresse de Livraison</h4>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <form method="post" action="{{ path('app_checkout-order') }}" onsubmit="return validateOrder()">
+                        <select name="adresse-livraison" id="adresse-livraison">
+                            <option value=""> -- Choisir une adresse --</option>
+                            {% for address in addresses %}
+                                <option value="{{ address.street ~ ', ' ~ address.codePostal ~ ', ' ~ address.city ~ ', ' ~ address.city  }}">
+                                    {{ address.street }}                                    
+                                    
+                                    {{ address.codePostal }}
+                                    {{ address.state }}
+                                    {{ address.city }}
+                                </option>
+                                {% endfor %}
+                            </select>
 
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                        <button type="submit" class="validate-button" id="validate-order-button">Valider ma commande</button>
+                    </form>
+                    
+                    <script>
+                        function validateOrder() {
+                            var livraisonSelected = document.getElementById('adresse-livraison').value;
+                        
+                            if (livraisonSelected === '') {
+                                alert('Veuillez ajouter ou choisir une adresse de livraison avant de valider votre commande.');
+                                return false; // Empêche la soumission du formulaire
+                            } else {
+                                return true; // Autorise la soumission du formulaire
+                            }
+                        }
+                        
+                    </script>
+                    
+                
+                   
 {% endblock %}

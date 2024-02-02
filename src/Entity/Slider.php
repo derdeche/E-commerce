@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\SliderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SliderRepository::class)]
@@ -21,9 +22,9 @@ class Slider
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $button_text = null;
+    
 
+    #[UrlField('button_link')]
     #[ORM\Column(length: 255)]
     private ?string $button_link = null;
 
@@ -68,17 +69,7 @@ class Slider
         return $this;
     }
 
-    public function getButtonText(): ?string
-    {
-        return $this->button_text;
-    }
-
-    public function setButtonText(string $button_text): static
-    {
-        $this->button_text = $button_text;
-
-        return $this;
-    }
+   
 
     public function getButtonLink(): ?string
     {

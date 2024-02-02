@@ -1,0 +1,22 @@
+# config/packages/easy_admin.yaml
+# easy_admin:
+#     entities:
+#         Slider:
+#             class: App\Entity\Slider
+#     design:
+#         menu:
+           
+#             - { route: 'app_home', label: 'Accueil', icon: 'home' }
+           
+           
+# entities:
+#         Slider:
+#             class: App\Entity\Slider
+#             label: 'Sliders'
+#             list:
+#                 fields:
+#                     - 'id'
+#                     - 'title'
+#                     - 'description'
+#                     - 'button_link' 
+#                     - 'image_url'

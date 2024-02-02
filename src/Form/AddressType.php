@@ -16,15 +16,15 @@ class AddressType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('address_type', ChoiceType::class, [
-            'choices' => [
-                'Adresse de livraison' => 'livraison',
-                'Adresse domicile' => 'domicile',
-            ],
-            'label' => 'Type d\'adresse',
-            'expanded' => true, 
-            'multiple' => false, 
-        ])
+        // ->add('address_type', ChoiceType::class, [
+        //     'choices' => [
+        //         'Adresse de livraison' => 'livraison',
+        //         'Adresse domicile' => 'domicile',
+        //     ],
+        //     'label' => 'Type d\'adresse',
+        //     'expanded' => true, 
+        //     'multiple' => false, 
+        // ])
             ->add('client_name')
             ->add('street')
             ->add('code_postal')

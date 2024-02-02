@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h1>Détails de la commande N° {{ order.id }}</h1>
+
+
+{% if order is defined %}
+    <p>Status: {{ order.status }}</p>
+    <p>Coût total: {{ order.orderCost }}</p>
+
+    <h2>Produits commandés</h2>
+    <ul>
+        {% for orderDetail in orderDetails %}
+            <li>
+                {{ orderDetail.product.name }} - Quantité: {{ orderDetail.quantity }} - Coût total du produit: {{ orderDetail.getTotalCost }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        ***************************
+        {% for productId, productInfo in productQuantities %}
+    <div>
+        <h3>Produit #{{ productId }} - {{ productInfo.quantity }}</h3>
+        <p>Quantité: {{ productInfo.quantity }}</p>
+        <p>Prix unitaire: {{ productInfo.price }} €</p>
+        <p>Total: {{ productInfo.quantity * productInfo.price }} €</p>
+    </div>
+{% endfor %}
+
+    </ul>
+{% else %}
+    <p>La variable "order" n'est pas définie.</p>
+{% endif %}
+
+<a href="{{ path('app_user', {'id': app.user.id}) }}">retourner à mon compte</a>
+
+{% endblock %}

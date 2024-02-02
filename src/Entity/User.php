@@ -254,6 +254,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->pseudo;
     }
+
+    public function setUserIdToZero()
+    {
+        foreach ($this->orders as $order) {
+            $order->setId(0);
+        }
+    }
+
    
 
 

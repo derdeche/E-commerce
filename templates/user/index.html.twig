@@ -3,27 +3,40 @@
 {% block title %}mon-compte{% endblock %}
 
 {% block body %}
-<h1> Présentation du compte</h1>
+    <h1>Présentation du compte</h1>
 
-<h2>Profil</h2>
-<h3>Pseudo: {{pseudo}}</h3>
-<h3>Email: {{email}}</h3>
-{% for address in addresses %}
-<h3>Adresse de : {{address.addressType}}</h3><br>
-<h3>Adresse: {{address.street}}</h3><br>
-<h3>Adresse: {{address.CodePostal}}</h3><br>
-<h3>Adresse: {{address.city}}</h3><br>
-<h3>Adresse: {{address.state}}</h3><br>
-<form method="post" action="{{ path('app_address_delete', {'id': address.id}) }}" >
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ address.id) }}">
-    <button class="btn">Spprimer cette adresse</button>
-</form>
+    <h2>Profil</h2>
+    <h3>Pseudo: {{ pseudo }}</h3>
+    <h3>Email: {{ email }}</h3>
 
+    {% for address in addresses %}
+        <h2>Adresse de livraison</h2>
+        <h3>Nom du client: {{ address.clientName }}</h3>
+        <h3>Rue: {{ address.street }}</h3>
+        <h3>Code Postal: {{ address.codePostal }}</h3>
+        <h3>Ville: {{ address.city }}</h3>
+        <h3>Pays: {{ address.state }}</h3>
+        <form method="post" action="{{ path('app_address_delete', {'id': address.id}) }}">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ address.id) }}">
+            <button class="btn">Supprimer cette adresse</button>
+        </form>
+    {% endfor %}
 
-{% endfor %}
-<a href="{{ path('app_address_new') }}">Ajouter une adresse</a>
-<a href="{{path ('delete_user')}}">Supprimer mon compte</a>
+    <a href="{{ path('app_address_new') }}">Ajouter une adresse</a>
+
+    <h2>Mes Commandes</h2>
+
+    {% if orders is not empty %}
+        {% for order in orders %}
+            <h3>Commande n°{{ order.id }} - Statut: {{ order.status }} - Coût TTC: {{ order.orderCostHt }} - Coût HTT: {{ order.orderCost }} - Taxe: {{ order.Taxe }} % - Adresse de livraison: {{ order.deliveryAddress }} - Date de création: {{ order.createdAt.format('d-m-Y H:i:s') }} </h3>
+            <a href="{{ path('app_order_details', { 'id':order.id})}}">Détails de la commande</a>
+            {% endfor %}
+    {% else %}
+        <p>Aucune commande.</p>
+    {% endif %}
+
+    
+
+    <a href="{{ path('delete_user') }}">Supprimer mon compte</a>
 
 {% endblock %}
-{# <a href="{{ path('app_address_edit', {'id': address.id}) }}">Modifier mon adresse</a> #}
-{# <h3>Adresse: {{addresses.city}}</h3> #}

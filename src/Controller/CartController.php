@@ -22,11 +22,13 @@ class CartController extends AbstractController
     {
         $cart = $this->cartService->getCartDetails();
         $cartItemCount = $this->cartService->getCartItemCount();
+        // dd($cart);
 
         return $this->render('cart/index.html.twig', [
             'controller_name' => 'CartController',
             'cart' => $cart,
             'cartItemCount' => $cartItemCount,
+            
             
         ]);
     }
@@ -39,8 +41,8 @@ class CartController extends AbstractController
     {
         $this->cartService->addToCart($productId, $count);
         
-        $this->addFlash('success', 'Le produit a été ajoutée avec succès.');
-            $this->addFlash('success-class', 'hide-message');
+        // $this->addFlash('success', 'Le produit a été ajoutée avec succès.');
+        //     $this->addFlash('success-class', 'hide-message');
 
         // Récupérer l'URL de la page précédente
         $referer = $request->headers->get('referer');
@@ -49,7 +51,7 @@ class CartController extends AbstractController
         if ($referer) {
             return $this->redirect($referer);
         }
-        
+      
         // Sinon, rediriger vers une URL par défaut 
         return $this->redirectToRoute('app_cart');
     }

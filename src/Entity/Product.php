@@ -18,14 +18,12 @@ class Product
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
-    
+
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $additionalInfos = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $moreDescription = null;
-
- 
 
     #[ORM\Column(nullable: true)]
     private ?int $stock = null;
@@ -33,18 +31,11 @@ class Product
     #[ORM\Column(nullable: true)]
     private ?int $soldePrice = null;
 
-
-    // #[ORM\ManyToOne(inversedBy: 'products')]
-    // private ?category $categories = null;
-    
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $brand = null;
-        
 
     #[ORM\Column(nullable: true)]
     private ?bool $isBestSeller = null;
-     
 
     #[ORM\Column(nullable: true)]
     private ?bool $isSpecialOffer = null;
@@ -52,20 +43,14 @@ class Product
     #[ORM\Column(type: Types::ARRAY)]
     private array $imageUrls = [];
 
-
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Category $category = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
 
-    
-
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
-
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderDetail::class, orphanRemoval: true)]
-    private Collection $products;
 
     #[ORM\ManyToMany(targetEntity: Slider::class, mappedBy: 'sliders')]
     private Collection $sliders;
@@ -82,16 +67,16 @@ class Product
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $price = null;
 
-
-   
+    /**
+     * @ORM\OneToMany(targetEntity=OrderDetail::class, mappedBy="product", orphanRemoval=true)
+     */
+    private Collection $orderDetails;
 
     public function __construct()
     {
-        $this->products = new ArrayCollection();
         $this->sliders = new ArrayCollection();
+        $this->orderDetails = new ArrayCollection();
     }
-
-          
 
     public function getId(): ?int
     {
@@ -109,9 +94,7 @@ class Product
 
         return $this;
     }
-  
 
- 
     public function getMoreDescription(): ?string
     {
         return $this->moreDescription;
@@ -123,8 +106,6 @@ class Product
 
         return $this;
     }
-
-   
 
     public function getStock(): ?int
     {
@@ -150,9 +131,6 @@ class Product
         return $this;
     }
 
-  
-
-
     public function getBrand(): ?string
     {
         return $this->brand;
@@ -165,7 +143,6 @@ class Product
         return $this;
     }
 
-
     public function isIsBestSeller(): ?bool
     {
         return $this->isBestSeller;
@@ -177,10 +154,6 @@ class Product
 
         return $this;
     }
-
- 
-
-   
 
     public function isIsSpecialOffer(): ?bool
     {
@@ -205,7 +178,6 @@ class Product
 
         return $this;
     }
-  
 
     public function getCategory(): ?Category
     {
@@ -231,8 +203,6 @@ class Product
         return $this;
     }
 
- 
-
     public function getSlug(): ?string
     {
         return $this->slug;
@@ -253,36 +223,6 @@ class Product
     public function setAdditionalInfos(?string $additionalInfos): static
     {
         $this->additionalInfos = $additionalInfos;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, orderdetail>
-     */
-    public function getProducts(): Collection
-    {
-        return $this->products;
-    }
-
-    public function addProduct(orderdetail $product): static
-    {
-        if (!$this->products->contains($product)) {
-            $this->products->add($product);
-            $product->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProduct(orderdetail $product): static
-    {
-        if ($this->products->removeElement($product)) {
-            // set the owning side to null (unless already changed)
-            if ($product->getProduct() === $this) {
-                $product->setProduct(null);
-            }
-        }
 
         return $this;
     }
@@ -362,16 +302,5 @@ class Product
         return $this;
     }
 
-  
-
-
    
-
-   
-
-  
-
-    
-
-
 }

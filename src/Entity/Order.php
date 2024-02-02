@@ -5,8 +5,6 @@ namespace App\Entity;
 use App\Repository\OrderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
-
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -18,86 +16,43 @@ class Order
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-    
-    
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $deliveryAdress = null;
-    
-    
-    #[ORM\Column(nullable: true)]
-    private ?bool $isPaid = null;
-    
+
     #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?User $user = null;
-    
-   
 
     #[ORM\Column(length: 255)]
     private ?string $status = null;
 
     #[ORM\Column]
-    private ?int $carrierPrice = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $carrierName = null;
-
-    
-    #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'orderdetails', targetEntity: OrderDetail::class, orphanRemoval: true)]
-    private Collection $orderdetails;
+    // #[ORM\Column]
+    // private ?int $quantity = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $taxe = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $delivery_address = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    private ?string $orderCost = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
+    private ?string $orderCostHt = null;
+
+    #[ORM\OneToMany(mappedBy: 'order', targetEntity: OrderDetail::class, cascade: ['persist', 'remove'])]
+    private Collection $orderDetails;
 
     public function __construct()
     {
-        $this->orderdetails = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
+        $this->orderDetails = new ArrayCollection();
     }
 
-   
-
-
-   
-
-   
-
-    
-
-   
-   
-
-   
-   
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-   
-
-    public function getDeliveryAdress(): ?string
-    {
-        return $this->deliveryAdress;
-    }
-
-    public function setDeliveryAdress(?string $deliveryAdress): static
-    {
-        $this->deliveryAdress = $deliveryAdress;
-
-        return $this;
-    }
-
- 
-
-    public function isIsPaid(): ?bool
-    {
-        return $this->isPaid;
-    }
-
-    public function setIsPaid(?bool $isPaid): static
-    {
-        $this->isPaid = $isPaid;
-
-        return $this;
     }
 
     public function getStatus(): ?string
@@ -112,32 +67,6 @@ class Order
         return $this;
     }
 
-    public function getCarrierPrice(): ?int
-    {
-        return $this->carrierPrice;
-    }
-
-    public function setCarrierPrice(int $carrierPrice): static
-    {
-        $this->carrierPrice = $carrierPrice;
-
-        return $this;
-    }
-
-    public function getCarrierName(): ?string
-    {
-        return $this->carrierName;
-    }
-
-    public function setCarrierName(string $carrierName): static
-    {
-        $this->carrierName = $carrierName;
-
-        return $this;
-    }
-
- 
-
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
@@ -149,12 +78,6 @@ class Order
 
         return $this;
     }
-
- 
-
-   
-
-   
 
     public function getUser(): ?User
     {
@@ -168,42 +91,84 @@ class Order
         return $this;
     }
 
+ 
+
+    public function getTaxe(): ?int
+    {
+        return $this->taxe;
+    }
+
+    public function setTaxe(?int $taxe): static
+    {
+        $this->taxe = $taxe;
+
+        return $this;
+    }
+
+    public function getDeliveryAddress(): ?string
+    {
+        return $this->delivery_address;
+    }
+
+    public function setDeliveryAddress(?string $delivery_address): static
+    {
+        $this->delivery_address = $delivery_address;
+
+        return $this;
+    }
+
+    public function setUserIdToZero()
+    {
+        $this->user = null;
+        $this->id = 0;
+    }
+
+    public function getOrderCost(): ?string
+    {
+        return $this->orderCost;
+    }
+
+    public function setOrderCost(string $orderCost): static
+    {
+        $this->orderCost = $orderCost;
+
+        return $this;
+    }
+
+    public function getOrderCostHt(): ?string
+    {
+        return $this->orderCostHt;
+    }
+
+    public function setOrderCostHt(?string $orderCostHt): static
+    {
+        $this->orderCostHt = $orderCostHt;
+
+        return $this;
+    }
+
     /**
-     * @return Collection<int, orderdetail>
+     * @return Collection<int, OrderDetail>
      */
-    public function getOrderdetails(): Collection
+    public function getOrderDetails(): Collection
     {
-        return $this->orderdetails;
+        return $this->orderDetails;
     }
 
-    public function addOrderdetail(orderdetail $orderdetail): static
+    public function addOrderDetail(OrderDetail $orderDetail): static
     {
-        if (!$this->orderdetails->contains($orderdetail)) {
-            $this->orderdetails->add($orderdetail);
-            $orderdetail->setOrderdetails($this);
+        if (!$this->orderDetails->contains($orderDetail)) {
+            $this->orderDetails->add($orderDetail);
+            $orderDetail->setOrder($this);
         }
 
         return $this;
     }
 
-    public function removeOrderdetail(orderdetail $orderdetail): static
+    public function removeOrderDetail(OrderDetail $orderDetail): static
     {
-        if ($this->orderdetails->removeElement($orderdetail)) {
-            // set the owning side to null (unless already changed)
-            if ($orderdetail->getOrderdetails() === $this) {
-                $orderdetail->setOrderdetails(null);
-            }
-        }
+        $this->orderDetails->removeElement($orderDetail);
 
         return $this;
     }
-
-    
-
-    
-   
-
-   
-
-
 }
