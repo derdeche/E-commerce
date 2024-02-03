@@ -1,5 +1,5 @@
 {% if sliderId == 1 %}
-    {% for product in productsBestSeller %}
+    {% for product in productsSpecialOffer %}
         <div class="product">
             {{ product.name }} - {{ product.price }}
         </div>
@@ -11,7 +11,7 @@
         </div>
     {% endfor %}
 {% elseif sliderId == 3 %}
-    {% for product in productsPreference %}
+    {% for product in productsBestSeller %}
         <div class="product">
             {{ product.name }} - {{ product.price }}
         </div>
