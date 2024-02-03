@@ -31,4 +31,9 @@ add_to_cart:
 #     path: /reset-password
 #     controller: App\Controller\ResetPasswordController::request
 
-
+# products_for_slider:
+#     path: '/products-for-slider/{slider_id}'
+#     controller: 'App\Controller\HomeController::productsForSlider'
+#     requirements:
+#         slider_id: '\d+'  
+#     methods: ['GET']
