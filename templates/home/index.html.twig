@@ -1,22 +1,39 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Eveil Kids{% endblock %}
-
-
-
-
-
-{% block body %}
-
-  
-
-<div class="slider-container">
+{# <div class="slider-container">
     <div class="slider">
         {% for slider in sliders %}
-            <section class="slide"  style="background-image: url('assets/images/sliders/{{ slider.getImageUrl() }}')">
+        <section class="slide"  style="background-image: url('assets/images/sliders/{{ slider.getImageUrl() }}')">
+            <div class="bloc">
+                <div class="sliderdescription-{{ loop.index }}">
+                    
+                    {{ slider.description }}
+                </div>
+                <div class="slidertitle-{{ loop.index }}">
+                    {{ slider.title }}
+                </div>
+                <div class="sliderbutton-position-{{ loop.index }}">
+                    <div class="sliderbutton-{{ loop.index }}">
+                        
+                        <a href="{{ slider.getButtonLink() }}">Voir plus </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endfor %}             
+    </div>  #}
+    {% extends 'base.html.twig' %}
+    
+    {% block title %}Eveil Kids{% endblock %}
+              
+    
+    {% block body %}
+    <div class="slider-container">
+        <div class="slider">
+            {% for slider in sliders %}
+            <section class="slide" style="background-image: url('assets/images/sliders/{{ slider.getImageUrl() }}')">
                 <div class="bloc">
                     <div class="sliderdescription-{{ loop.index }}">
-                        
                         {{ slider.description }}
                     </div>
                     <div class="slidertitle-{{ loop.index }}">
@@ -24,36 +41,44 @@
                     </div>
                     <div class="sliderbutton-position-{{ loop.index }}">
                         <div class="sliderbutton-{{ loop.index }}">
-                            <a href="{{ slider.getButtonLink() }}">Voir plus </a>
-
+                            <a href="{{ path('products_for_slider', {'slider_id': slider.getId()}) }}">{{ slider.getButtonLink}}</a>
+                            
                         </div>
                     </div>
                 </div>
             </section>
-        {% endfor %}             
+            {% endfor %}
+        </div>
+    
+    
+    
+        <div class="position1">
+            <button class="next-slide"> > </button>
+        </div>
+        <div class="position2">
+            <button class="prev-slide"> < </button>
+        </div>
+        
+        <div class="arrow-btn">
+            <a href="#"><span class="fa-solid fa-arrow-up"></span></a>
+        </div>
     </div>
-    <div class="position1">
-        <button class="next-slide"> > </button>
-    </div>
-    <div class="position2">
-        <button class="prev-slide"> < </button>
-    </div>
-</div>
-
-<div class="arrow-btn">
-    <a href="#"><span class="fa-solid fa-arrow-up"></span></a>
-</div>
 
 
 
-<section class="bestseller">
+
+
+
+
+{% endblock %} 
+
+{# <section class="bestseller">
     {% for product in productsBestSeller %}
         <h2>{{ product.name }}</h2>
         <p>Catégorie : {{ product.category }}</p>
         <p>Description : {{ product.description }}</p>
         <p>Prix : {{ product.price/100 }} €</p>
         
-        {# <a href="/cart/add/{{product.id}}/1">ajouter au panier</a> #}
         <a href="{{ path('app_add_to_cart', {'productId': product.id, 'count': 1}) }}">ajouter au panier</a>
 
 
@@ -70,7 +95,6 @@
         <p>Catégorie : {{ product.category }}</p>
         <p>Description : {{ product.description  }}</p>
         <p>Prix : {{ product.price/100 }} €</p>
-        {# <a href="/cart/add/{{product.id}}/1">ajouter au panier</a> #}
 
 
         <img src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}" style="width: 150px; height: 150px;">
@@ -82,6 +106,5 @@
 </section>
     
     
-    
-{% endblock %}  
+     #}
  
