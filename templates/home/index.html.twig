@@ -1,27 +1,4 @@
 
-{# <div class="slider-container">
-    <div class="slider">
-        {% for slider in sliders %}
-        <section class="slide"  style="background-image: url('assets/images/sliders/{{ slider.getImageUrl() }}')">
-            <div class="bloc">
-                <div class="sliderdescription-{{ loop.index }}">
-                    
-                    {{ slider.description }}
-                </div>
-                <div class="slidertitle-{{ loop.index }}">
-                    {{ slider.title }}
-                </div>
-                <div class="sliderbutton-position-{{ loop.index }}">
-                    <div class="sliderbutton-{{ loop.index }}">
-                        
-                        <a href="{{ slider.getButtonLink() }}">Voir plus </a>
-                        
-                    </div>
-                </div>
-            </div>
-        </section>
-        {% endfor %}             
-    </div>  #}
     {% extends 'base.html.twig' %}
     
     {% block title %}Eveil Kids{% endblock %}
@@ -70,41 +47,50 @@
 
 
 
-{% endblock %} 
-
-{# <section class="bestseller">
-    {% for product in productsBestSeller %}
-        <h2>{{ product.name }}</h2>
-        <p>Catégorie : {{ product.category }}</p>
-        <p>Description : {{ product.description }}</p>
-        <p>Prix : {{ product.price/100 }} €</p>
-        
-        <a href="{{ path('app_add_to_cart', {'productId': product.id, 'count': 1}) }}">ajouter au panier</a>
-
-
-        <img src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}" style="width: 150px; height: 150px;">
-
-
-            
-    {% endfor %}
-
+    
+    
+    
 </section>
 <section class="preference">
-    {% for product in productsPreference %}
-        <h2>{{ product.name }}</h2>
-        <p>Catégorie : {{ product.category }}</p>
-        <p>Description : {{ product.description  }}</p>
-        <p>Prix : {{ product.price/100 }} €</p>
-
-
-        <img src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}" style="width: 150px; height: 150px;">
-
-
+    <h2>LES PRÉFÉRÉS DES PARENTS</h2>
+    <div class="cards-container">
+        {% for product in productsPreference %}
+        
+        <div class="card">                         
             
-    {% endfor %}
+            <div class="card-header">
+                <a href="{{ path('app_product_by_slug', {'slug': product.slug }) }}">
+                    <img src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}" style="width: 300px; height: 200px;">
+                </a>
+            </div>
+            <div class="productname">
+                <h3>{{ product.name }}</h3>
+            </div>
+            <div class="productprice">
+                <p>Prix : {{ product.price }} €</p>
+            </div>
+                
+            <div class="addtocart">
+                <a href="{{ path('app_add_to_cart', {'productId': product.id, 'count': 1}) }}">Ajouter au panier</a>
+            </div>
+                                            
+        </div>
+        
 
+        {% endfor %}
+    </div>
 </section>
+<div id="container">
     
     
-     #}
+    {# <div class="product-item">
+        <img src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}" style="width: 150px; height: 150px;">
+        <h3>{{ product.name }}</h3>
+        <p>Prix : {{ product.price/100 }} €</p>
+        <div class="add-to-cart">
+            <a href="{{ path('app_add_to_cart', {'productId': product.id, 'count': 1}) }}">Ajouter au panier</a>
+            </div>
+        </div> #}
+    
+    {% endblock %} 
  
