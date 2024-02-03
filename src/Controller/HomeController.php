@@ -81,9 +81,9 @@ class HomeController extends AbstractController
             // 'products' => $products,
             'sliderId' => $slider_id, 
             'sliders' => $sliders,
-            'productsBestSeller' => $productsBestSeller,
-            'productsNewCollection' => $productsNewCollection,
             'productsSpecialOffer' => $productsSpecialOffer,
+            'productsNewCollection' => $productsNewCollection,
+            'productsBestSeller' => $productsBestSeller,
         ]);
     }
   
