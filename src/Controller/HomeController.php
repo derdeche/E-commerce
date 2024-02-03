@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
 class HomeController extends AbstractController
 
 {
@@ -25,7 +26,6 @@ class HomeController extends AbstractController
 
 
     public function __construct(EntityManagerInterface $entityManager, ProductRepository $repoProduct,CartService $cartService){
-        $this->repoProduct = $repoProduct;
         $this->cartService = $cartService;
         $this->entityManager = $entityManager;
 
@@ -63,6 +63,27 @@ class HomeController extends AbstractController
             'productsPreference' => $productsPreference,
             'categories' => $category,
             'cart' => $cart,
+        ]);
+    }
+    
+    #[Route("products-for-slider/{slider_id}", name:"products_for_slider")]     
+    public function productsForSlider(    $slider_id,    SliderRepository $sliderRepo,
+    ProductRepository $productRepo): Response
+    {
+        $sliders = $sliderRepo->findAll();      
+
+        // $products = $productRepo->findBy(['slider' => $sliderId]);
+        $productsBestSeller = $productRepo->findBy(['isBestSeller'=>true]);
+        $productsSpecialOffer = $productRepo->findBy(['isSpecialOffer'=>true]);
+        $productsNewCollection = $productRepo->findBy(['isNewCollection'=>true]);
+
+        return $this->render('home/products_for_slider.html.twig', [
+            // 'products' => $products,
+            'sliderId' => $slider_id, 
+            'sliders' => $sliders,
+            'productsBestSeller' => $productsBestSeller,
+            'productsNewCollection' => $productsNewCollection,
+            'productsSpecialOffer' => $productsSpecialOffer,
         ]);
     }
   
@@ -167,6 +188,16 @@ class HomeController extends AbstractController
 
         }
 
+        public function productList($slider_id): Response
+    {
+        // Utilisez $slider_id pour charger la liste de produits associée à ce slider
+
+        // ...
+
+        return $this->render('product/list.html.twig', [
+            // Passer les données nécessaires à la vue
+        ]);
+    }
 
 
 
