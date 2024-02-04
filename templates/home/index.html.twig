@@ -40,14 +40,7 @@
             <a href="#"><span class="fa-solid fa-arrow-up"></span></a>
         </div>
     </div>
-
-
-
-
-
-
-
-    
+   
     
     
 </section>
@@ -60,7 +53,7 @@
             
             <div class="card-header">
                 <a href="{{ path('app_product_by_slug', {'slug': product.slug }) }}">
-                    <img src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}" style="width: 300px; height: 200px;">
+                    <img src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}" style="width: 300px; ">
                 </a>
             </div>
             <div class="productname">
@@ -80,17 +73,37 @@
         {% endfor %}
     </div>
 </section>
-<div id="container">
+
+<section class="montessori">
+    <div id="container">
+        <h2>MONTESSORI À LA MAISON</h2>
+        <p>
+            La pédagogie Montessori est une méthode d'éducation qui encourage l'autonomie et l'épanouissement de l'enfant. 
+            Elle est basée sur l'observation de l'enfant et la mise à sa disposition d'un environnement adapté à ses besoins. 
+            Eveil Kids vous propose une sélection de produits Montessori pour accompagner votre enfant dans son développement.
+        </p>
+        <h3>
+            Le matériel Montessori :
+        </h3>
+        <p>
+            Eveil Kids vous propose une sélection de matériel Montessori pour accompagner votre enfant dans son développement. 
+            Vous trouverez des jeux et des jouets pour les enfants de 0 à 12 ans. 
+           
+        </p>
+        
+       
+        <h3>    
+            Apprendre par le jeu :
+        </h3>
+        <p>
+            En plus de l'offre complète Montessori, nous avons sélectionné les meilleurs jeux et jouets pédagogiques pour vos enfants. L'ADN de chaque jouets d'Eveil-Montessori est toujours "Apprendre en jouant".
+            En effet, jouer est le meilleur moyen d'apprendre. L'un ne va pas sans l'autre. C'est pourquoi nous mettons tout notre savoir-faire et toute notre expérience dans la sélection et la conception de jouets
+            éducatifs qui ont un sens pédagogique et qui apporte des compétences supplémentaires à votre enfant.
+
+        </p>
     
-    
-    {# <div class="product-item">
-        <img src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}" style="width: 150px; height: 150px;">
-        <h3>{{ product.name }}</h3>
-        <p>Prix : {{ product.price/100 }} €</p>
-        <div class="add-to-cart">
-            <a href="{{ path('app_add_to_cart', {'productId': product.id, 'count': 1}) }}">Ajouter au panier</a>
-            </div>
-        </div> #}
+</section>
+
     
     {% endblock %} 
  
