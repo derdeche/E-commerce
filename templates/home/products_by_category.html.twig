@@ -1,39 +1,52 @@
 {% extends 'base.html.twig' %}
-{# {% block title %}Catégorie{% endblock %} #}
+
+{% block title %}Catégorie {{ category.name }} {% endblock %}
+
 {% block body %}
-<div class="category-header">
-    <h3>Produits de la catégorie {{ category.name }}</h3>
-</div>
+    <section>
 
-<div class="sort-links">
-    <div>
-        <a href="{{ path('products_by_category', {'categoryId': categoryId, 'sort_by': 'asc'}) }}">Tri croissant</a>
-    </div>
-    <div>
-        <a href="{{ path('products_by_category', {'categoryId': categoryId, 'sort_by': 'desc'}) }}">Tri décroissant</a>
-    </div>
-</div>
+        <div class="category-header">
+            <h3>Produits de la catégorie {{ category.name }}</h3>
+        </div>
 
-<ul class="product-list">
-    {% for product in product %}
-    <li class="product-item">
-        <div class="product-details">
-            <div class="product-name">{{ product.name }}</div>
-            <div class="product-price">{{ product.price }} {{'€'}}</div>
-            <div class="product-description">{{ product.description }}</div>
-            <div class="product-moreDescription">{{ product.moreDescription }}</div>
+        <div class="sort-links">
+            <div>
+                <a href="{{ path('products_by_category', {'categoryId': categoryId, 'sort_by': 'asc'}) }}">Tri croissant</a>
+            </div>
+            <div>
+                <a href="{{ path('products_by_category', {'categoryId': categoryId, 'sort_by': 'desc'}) }}">Tri décroissant</a>
+            </div>
         </div>
-        <a href="{{ path('app_product_by_slug', {'slug': product.slug }) }}">Voir les détails du produit</a>
-        <div class="product-image">
-            <img src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}">
+
+
+        <div class="cards-container">
+            {% for product in product %}
+            
+                <div class="card">                         
+                    
+                    <div class="card-header">
+                        <a href="{{ path('app_product_by_slug', {'slug': product.slug }) }}">
+                            <img class="product-image" src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}"  >
+                        </a>
+                    </div>
+                    <div class="productname">
+                        <h3>{{ product.name }}</h3>
+                    </div>
+                    <div class="productprice">
+                        <p>Prix : {{ product.price }} €</p>
+                    </div>
+                        
+                    <div class="addtocart">
+                        <a href="{{ path('app_add_to_cart', {'productId': product.id, 'count': 1}) }}">Ajouter au panier</a>
+                    </div>
+                                                    
+                </div>
+            
+
+            {% endfor %}
         </div>
-        <div class="add-to-cart">
-            <a href="{{ path('app_add_to_cart', {'productId': product.id, 'count': 1}) }}">Ajouter au panier</a>
-        </div>
-        </li>
-        {% endfor %}
-    </ul>
-      
+
+    </section>
 
 {% endblock %}
 
