@@ -125,29 +125,7 @@ class HomeController extends AbstractController
             ]);
 
         }
-
-
-
-    
-        //         /**
-        //  * @Route("/produit/{slug}", name="app_product_by_slug")
-        //  */
-        // public function showProduct(string $slug) {
-            
-        //     $product = $this->repoProduct->findOneBy(['slug'=> $slug]);
-
-        //    if(!$product){
-        //     // error
-        //     return $this->redirectToRoute('app_error');
-        //    }
-        
-
-        //     return $this->render('product/show_product_by_slug.html.twig',[
-        //         'product' => $product
-        //     ]);
-
-        // }
-
+   
         
                 
         #[Route("/produit/{slug}", name:"app_product_by_slug")]
@@ -190,10 +168,7 @@ class HomeController extends AbstractController
 
         public function productList($slider_id): Response
     {
-        // Utilisez $slider_id pour charger la liste de produits associée à ce slider
-
-        // ...
-
+        
         return $this->render('product/list.html.twig', [
             // Passer les données nécessaires à la vue
         ]);
