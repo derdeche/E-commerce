@@ -10,10 +10,10 @@
         </div>
 
         <div class="bloc2">
-            <div class="liens">
-                <h4>Liens Utiles</h4>
-            </div>
             <ul>
+                <li class="footertitle">
+                    <h4>Liens Utiles</h4>
+                </li>
                 
                 {% if app.session.has('footerPages') %}
                     {% for page in app.session.get('footerPages') %}
@@ -28,7 +28,7 @@
 
         <div class="bloc3">
             <ul>
-                <li class="liens">
+                <li class="footertitle">
                     <h4>Les Catégories</h4>
                 </li>
                 <li class="lien1">
@@ -48,7 +48,7 @@
 
         <div class="bloc4">
             <ul>
-                <li class="liens">
+                <li class="footertitle">
                     <h4>Contact infos</h4>
                 </li>
                 <li class="lien1">
