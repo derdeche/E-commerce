@@ -5,20 +5,16 @@
                 <img src="{{ asset('assets/images/logo/EveilKids-removebg-preview.svg') }}" alt="Eveil-Kids">
             </div>
             <div class="para">
-                <p>Retrouvez tous les jouets</p>
+                <p>Retrouvez tous les jouets d'éveil et éducatifs de MONTESSORI</p>
             </div>
         </div>
 
         <div class="bloc2">
             <div class="liens">
-              <p>Liens Utiles</p>
+                <h4>Liens Utiles</h4>
             </div>
             <ul>
-                {# {% for page in app.session.get('footerPages') %}
-                   <li class="lien1">
-                        <a href="/page/{{page.slug}}">{{page.title}}</a>
-                   </li>
-                {% endfor %} #}
+                
                 {% if app.session.has('footerPages') %}
                     {% for page in app.session.get('footerPages') %}
                         <li class="lien1">
@@ -33,19 +29,19 @@
         <div class="bloc3">
             <ul>
                 <li class="liens">
-                    <p>Les Catégories</p>
+                    <h4>Les Catégories</h4>
                 </li>
                 <li class="lien1">
-                    <a href="#">Catégorie 1</a>
+                    <a href="{{ path('products_by_category', {'categoryId': 1}) }}">0 - 2 Ans</a>
                 </li>
                 <li class="lien1">
-                    <a href="#">Catégorie 2</a>
+                    <a href="{{ path('products_by_category', {'categoryId': 2}) }}">2 - 4 Ans</a>
                 </li>
                 <li class="lien1">
-                    <a href="#">Catégorie 3</a>
+                    <a href="{{ path('products_by_category', {'categoryId': 3}) }}">5 - 7 Ans</a>
                 </li>
                 <li class="lien1">
-                    <a href="#">Catégorie 4</a>
+                    <a href="{{ path('products_by_category', {'categoryId': 4}) }}">8 - 12 Ans</a>
                 </li>
             </ul>
         </div>
@@ -53,11 +49,11 @@
         <div class="bloc4">
             <ul>
                 <li class="liens">
-                    <p>Contact infos</p>
+                    <h4>Contact infos</h4>
                 </li>
                 <li class="lien1">
                     <span>
-                        <i class="fa-solid fa-location-dot"></i>{{ ' ' }} 202 Avenue de Colmar, 67100 Strasbourg
+                        <i class="fa-solid fa-location-dot"></i>{{ ' ' }} 202 Avenue de Colmar, 67100 Strasbourg.
                     </span>
                 </li>
                 <li class="lien1">
@@ -67,7 +63,7 @@
                 </li>
                 <li class="lien1">
                     <span>
-                        <i class="fa-solid fa-phone"></i>{{ ' ' }} +33 7 60 60 60 60
+                        <i class="fa-solid fa-phone"></i>{{ ' ' }} +33 7 66 57 32 39
                     </span>
                 </li>
             </ul>
@@ -79,8 +75,6 @@
             <span> ©2024 All rights reserved by Foued DERDECHE</span>
         </div>
 
-        <div class="payment-methods">
-            <span>MOYENS DE PAIEMENT </span>
-        </div>
+     
     </section>
 </footer>
