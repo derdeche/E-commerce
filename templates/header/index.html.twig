@@ -11,7 +11,9 @@
             <div class="menu ">
                 <nav>
                     <ul>
-                        <li><a href="/home">Accueil</a></li>                
+                        {# Lien vers la page d'accueil #}
+                        <li><a href="/home">Accueil</a></li>      
+                        {# Les catégories "Jouets par Âge"   #}
                         <li class="categories-dropdown">Jouets par Âge
                             <ul class="categories-menu">
                                                                 
@@ -24,6 +26,7 @@
                         </li>
                         <li class="categories-dropdown">Mobilité et Motricité
                             <ul class="categories-menu">
+                                {# Les catégories spécifiques à la mobilité et la motricité #}
                                 <li><a href="{{ path('products_by_category', {'categoryId': 5}) }}">Mobilier et Rangement</a></li>
                                 <li><a href="{{ path('products_by_category', {'categoryId': 6}) }}">Motricité globale</a></li>
                                 <li><a href="{{ path('products_by_category', {'categoryId': 7}) }}">Tapis educatifs</a></li>                                                                                
@@ -31,6 +34,7 @@
                         </li>
                         <li class="categories-dropdown">Puzzles
                             <ul class="categories-menu">
+                                {# Les puzzles pour les différentes tranches d'âge #}
                                 <li><a href="{{ path('products_by_category', {'categoryId': 8}) }}">Puzzles de 1 à 2 Ans</a></li>
                                 <li><a href="{{ path('products_by_category', {'categoryId': 9}) }}">Puzzles de 2 à 3 Ans</a></li>
                                 <li><a href="{{ path('products_by_category', {'categoryId': 10}) }}">Puzzles de 3 à 4 Ans</a></li>                                                                                
@@ -39,6 +43,7 @@
                         </li>
                         <li class="categories-dropdown">Coffrets
                             <ul class="categories-menu">
+                                {# Les coffrets pour les différentes tranches d'âge #}
                                 <li><a href="{{ path('products_by_category', {'categoryId': 12}) }}">Coffrets pour les tout-petits</a></li>
                                 <li><a href="{{ path('products_by_category', {'categoryId': 13}) }}">Coffrets 3 à 6 Ans</a></li>
                                 <li><a href="{{ path('products_by_category', {'categoryId': 14}) }}">Coffrets 6 à 13 Ans</a></li>                                                                                
@@ -47,6 +52,7 @@
                         </li>
                         <li class="categories-dropdown">Livres
                             <ul class="categories-menu">
+                                {# Les catégories de livres #}
                                 <li><a href="{{ path('products_by_category', {'categoryId': 16}) }}">Livres montessori</a></li>                                                                                
                                 <li><a href="{{ path('products_by_category', {'categoryId': 17}) }}">Livres à toucher</a></li>
                                 <li><a href="{{ path('products_by_category', {'categoryId': 18}) }}">Livres sonores</a></li>
