@@ -3,12 +3,13 @@
 {% block title %}Catégorie {{ category.name }} {% endblock %}
 
 {% block body %}
-    <section>
+   
+    <section class="section-category">
 
         <div class="category-header">
-            <h3>Produits de la catégorie {{ category.name }}</h3>
+            <h2>Produits de la catégorie {{ category.name }}</h2>
         </div>
-
+        {# Liens de tri pour ordonner les produits #}
         <div class="sort-links">
             <div>
                 <a href="{{ path('products_by_category', {'categoryId': categoryId, 'sort_by': 'asc'}) }}">Tri croissant</a>
@@ -23,19 +24,22 @@
             {% for product in product %}
             
                 <div class="card">                         
-                    
+                    {#  le lien vers le détail du produit #}
                     <div class="card-header">
                         <a href="{{ path('app_product_by_slug', {'slug': product.slug }) }}">
+                            {# Image du produit #}
                             <img class="product-image" src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}"  >
                         </a>
                     </div>
+                    {# Nom du produit #}
                     <div class="productname">
                         <h3>{{ product.name }}</h3>
                     </div>
+                    {# Prix du produit #}
                     <div class="productprice">
                         <p>Prix : {{ product.price }} €</p>
                     </div>
-                        
+                    {# Lien pour ajouter le produit au panier #}
                     <div class="addtocart">
                         <a href="{{ path('app_add_to_cart', {'productId': product.id, 'count': 1}) }}">Ajouter au panier</a>
                     </div>
