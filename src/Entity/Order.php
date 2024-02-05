@@ -26,9 +26,7 @@ class Order
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    // #[ORM\Column]
-    // private ?int $quantity = null;
-
+   
     #[ORM\Column(nullable: true)]
     private ?int $taxe = null;
 
