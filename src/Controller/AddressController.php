@@ -107,5 +107,14 @@ class AddressController extends AbstractController
         // on redirige vers la page app_user avec l'ID de l'utilisateur
         return $this->redirectToRoute('app_user', ['id' => $userId], Response::HTTP_SEE_OTHER);
     }
+
     
+     // une redirection vers la page home si un code est introduit dans
+    /**
+     * @Route("{any}", name="redirect_home", requirements={"any"=".+"})
+     */
+    public function redirectHome(): Response
+    {
+        return $this->redirectToRoute('app_home');
+    }
 }
