@@ -27,4 +27,13 @@ class PageController extends AbstractController
         ]);
     }
     
+     // une redirection vers la page home si un code est introduit dans
+    /**
+     * @Route("{any}", name="redirect_home", requirements={"any"=".+"})
+     */
+    public function redirectHome(): Response
+    {
+        return $this->redirectToRoute('app_home');
+    }
+    
 }
