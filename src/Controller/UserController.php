@@ -15,19 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class UserController extends AbstractController
 {
-    // #[Route('/profil/{id}', name: 'app_user', methods: ['GET', 'POST'])]
-    // public function index(int $id, EntityManagerInterface $entityManager): Response
-    // {
-    //     $user = $entityManager->getRepository(User::class)->find($id);
-
-    //     if (!$user) {
-    //         throw $this->createNotFoundException('Utilisateur non trouvé');
-    //     }
-
-    //     return $this->render('user/index.html.twig', [
-    //         'user' => $user,
-    //     ]);
-    // }
+  
     #[Route('/mon-compte/{id}', name: 'app_user', methods:['GET', 'POST'])]
     public function profil(EntityManagerInterface $entityManager, $id, User $user, Request $request,OrderRepository $orderRepository, AddressRepository $addressRepository): Response
     {
@@ -47,12 +35,14 @@ class UserController extends AbstractController
         if (!$user) {
             throw $this->createNotFoundException('L\'Utilisateur n\'existe pas.');
         }
-    
+        
+        
         $pseudo = $user->getPseudo();
         $email = $user->getEmail();
         $id = $user->getId();
         $orders = $user->getOrders();
-
+        
+       
     
         return $this->render('user/index.html.twig', [
             'user' => $user,
@@ -107,4 +97,13 @@ class UserController extends AbstractController
 
     return $this->redirectToRoute('app_home');
 }
+
+ // une redirection vers la page home si un code est introduit dans
+    /**
+     * @Route("/{any}", name="redirect_home", requirements={"any"=".+"})
+     */
+    public function redirectHome(): Response
+    {
+        return $this->redirectToRoute('app_home');
+    }
 }
