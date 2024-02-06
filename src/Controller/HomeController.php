@@ -32,7 +32,7 @@ class HomeController extends AbstractController
         
     }
 
-    #[Route('/home', name: 'app_home')]
+#[Route('/home', name: 'app_home')]
     public function index(
         SliderRepository $sliderRepo,
         PageRepository $pageRepo,
@@ -66,6 +66,7 @@ class HomeController extends AbstractController
         ]);
     }
     
+    
     #[Route("products-for-slider/{slider_id}", name:"products_for_slider")]     
     public function productsForSlider(    $slider_id,    SliderRepository $sliderRepo,
     ProductRepository $productRepo): Response
@@ -88,48 +89,50 @@ class HomeController extends AbstractController
     }
   
 
- 
-                
-         #[Route("/produits-de-la-categorie/{categoryId}", name:"products_by_category")]
-         
-        public function productsByCategory(
-            CategoryRepository $categoryRepo,
-            Request $request,
-            $categoryId
-        ): Response {
-            // on récupère la catégorie par son id
-            $category = $categoryRepo->find($categoryId);
+    #[Route("/produits-de-la-categorie/{categoryId}", name: "products_by_category")]
+    public function productsByCategory(
+        CategoryRepository $categoryRepo,
+        Request $request,
+        $categoryId
+    ): Response {
+        // on récupère la catégorie par son id
+        $category = $categoryRepo->find($categoryId);
 
-            // on récupère les produits de la catégorie
-            $products = $category->getProducts()->toArray();
-        
-
-            // ici on récupère le paramètre de tri
-            $sortBy = $request->query->get('sort_by');
-
-            // ici on applique le tri si le paramètre est défini
-            if ($sortBy === 'asc') {
-                usort($products, function ($a, $b) {
-                    return $a->getPrice() - $b->getPrice();
-                });
-            } elseif ($sortBy === 'desc') {
-                usort($products, function ($a, $b) {
-                    return $b->getPrice() - $a->getPrice();
-                });
-            }
-
-            return $this->render('home/products_by_category.html.twig', [
-                'categoryId' => $categoryId,
-                'category' => $category,
-                'product' => $products,
-            ]);
-
+        // Vérifiez si la catégorie existe
+        if (!$category) {
+            // Si la catégorie n'existe pas, redirigez vers la page d'accueil
+            return $this->redirectToRoute('app_home');
         }
-   
+
+        // on récupère les produits de la catégorie
+        $products = $category->getProducts()->toArray();
+
+        // on récupère le paramètre de tri
+        $sortBy = $request->query->get('sort_by');
+
+        // on applique le tri si le paramètre est défini
+        if ($sortBy === 'asc') {
+            usort($products, function ($a, $b) {
+                return $a->getPrice() - $b->getPrice();
+            });
+        } elseif ($sortBy === 'desc') {
+            usort($products, function ($a, $b) {
+                return $b->getPrice() - $a->getPrice();
+            });
+        }
+
+        return $this->render('home/products_by_category.html.twig', [
+            'categoryId' => $categoryId,
+            'category' => $category,
+            'product' => $products,
+        ]);
+    }
+
         
-                
+        
+        
         #[Route("/produit/{slug}", name:"app_product_by_slug")]
-         
+        
         public function showProductBySlug(Request $request, string $slug): Response
         {
             $productRepository = $this->entityManager->getRepository(Product::class);
@@ -137,44 +140,51 @@ class HomeController extends AbstractController
 
 
             if (!$product) {
-                throw $this->createNotFoundException('Le produit n\'existe pas');
+                return $this->redirectToRoute('app_home');
             }
         
             $form = $this->createForm(QuantityType::class);
             $form->handleRequest($request);
-        
+            
             if ($form->isSubmitted() && $form->isValid()) {
                 $quantity = $form->get('quantity')->getData();
                 $this->cartService->addToCart($product->getId(), $quantity);
             }
-        
+            
             return $this->render('home/show_product_by_slug.html.twig', [
                 'product' => $product,
                 'form' => $form->createView(),
             ]);
         }
-
+        
         #Route("/erreur", name="app_error")
         public function errorPage() {
             
             
-        
-
+            
+            
             return $this->render('page/not-found.html.twig',[
                 'controller_name' => 'PageController'
             ]);
-
+            
         }
-
-        public function productList($slider_id): Response
-    {
         
-        return $this->render('product/list.html.twig', [
-            // Passer les données nécessaires à la vue
-        ]);
-    }
+        public function productList($slider_id): Response
+        {
+            
+            return $this->render('product/list.html.twig', [
+            ]);
+        }
+        
 
 
-
-
+        
+        // une redirection vers la page home si un code est introduit dans
+        /**
+         * @Route("/{any}", name="redirect_home", requirements={"any"=".+"})
+         */
+        public function redirectHome(): Response
+        {
+            return $this->redirectToRoute('app_home');
+        }
 }
