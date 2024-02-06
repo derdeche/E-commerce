@@ -27,6 +27,7 @@ class RegistrationController extends AbstractController
         $this->emailVerifier = $emailVerifier;
     }
 
+
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppCustomAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
@@ -86,5 +87,13 @@ class RegistrationController extends AbstractController
         $this->addFlash('success', 'Your email address has been verified.');
 
         return $this->redirectToRoute('app_register');
+    }
+     // une redirection vers la page home si un code est introduit dans
+    /**
+     * @Route("{any}", name="redirect_home", requirements={"any"=".+"})
+     */
+    public function redirectHome(): Response
+    {
+        return $this->redirectToRoute('app_home');
     }
 }
