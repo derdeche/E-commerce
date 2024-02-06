@@ -1,0 +1,307 @@
+/* Réinitialisation des styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+    /* box-sizing: border-box; */
+}
+
+/******************************************slider 1******************************************************************************/
+/* Styles communs pour les éléments de tous les sliders */
+.slidertitle-1,
+.sliderdescription-1
+.sliderbutton-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #6ac4f0;
+    /* font-weight: 500; */
+}
+
+/* Styles spécifiques pour le titre du slider 1 */
+.slidertitle-1 {
+    font-size: 60px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    color: #6ac4f0;
+
+}
+/* Styles spécifiques pour la description du slider 1 */
+.sliderdescription-1 {
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 1.5;
+  
+}
+
+/* Styles spécifiques pour le bouton du slider 1 */
+.sliderbutton-1 {
+    font-size: 25px;
+    background-color: #6ac4f0;
+    border: none;
+    padding: 10px;
+    width: 150px;
+    border-radius: 1rem;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    
+}
+.sliderbutton-1 a {
+    text-decoration: none;
+    color: white;
+}
+
+
+/* Styles de survol et d'activation pour le bouton du slider 1 */
+.sliderbutton-1:active {
+    color: white;
+    transform: translateY(0.2rem);
+    width: 130px;
+    
+}
+
+.sliderbutton-1:hover:not(:disabled) {
+    background: #3c89e8;
+   
+}
+
+
+/* Positionnement du bouton du slider 1 */
+.sliderbutton-position-1 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+}
+
+/* ************************************************************slider 2**************************************************************** */
+/* Styles communs pour les éléments de tous les sliders */
+.slidertitle-2,
+.sliderdescription-2
+.sliderbutton-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(5, 5, 5);
+}
+
+/* Styles spécifiques pour le titre du slider 2 */
+.slidertitle-2 {
+    font-size: 60px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    color: black;
+
+}
+
+/* Styles spécifiques pour la description du slider 2 */
+.sliderdescription-2 {
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    /* color: white; */
+
+}
+
+/* Styles spécifiques pour le bouton du slider 2 */
+.sliderbutton-2 {
+    font-size: 25px;
+    background-color: #6ac4f0;
+    border: none;
+    padding: 10px;
+    width: 150px;
+    border-radius: 1rem;
+    color: white;
+    cursor: pointer;
+}
+
+.sliderbutton-2 a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Styles de survol et d'activation pour le bouton du slider 2 */
+.sliderbutton-2:active {
+    color: white;
+    transform: translateY(0.2rem);
+    width: 130px;
+}
+
+.sliderbutton-2:hover:not(:disabled) {
+    background: #3c89e8;
+}
+
+/* Positionnement du bouton du slider 2 */
+.sliderbutton-position-2 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+}
+
+/* *************************************************************slider 3 ************************************************************ */
+/* Styles communs pour les éléments de tous les sliders */
+.slidertitle-3,
+.sliderdescription-3
+.sliderbutton-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(5, 5, 5);
+}
+
+/* Styles spécifiques pour le titre du slider 3 */
+.slidertitle-3 {
+    font-size: 60px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 1.5;
+
+}
+
+/* Styles spécifiques pour la description du slider 3 */
+.sliderdescription-3 {
+    font-size: 25px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 1.5;
+   
+
+}
+
+/* Styles spécifiques pour le bouton du slider 3 */
+.sliderbutton-3 {
+    font-size: 25px;
+    background-color: #6ac4f0;
+    border: none;
+    padding: 10px;
+    width: 150px;
+    border-radius: 1rem;
+    color: white;
+    cursor: pointer;
+}
+
+.sliderbutton-3 a {
+    text-decoration: none;
+    color: white;
+   
+}
+
+/* Styles de survol et d'activation pour le bouton du slider 3 */
+.sliderbutton-3:active {
+    color: white;
+    transform: translateY(0.2rem);
+    width: 130px;
+}
+
+.sliderbutton-3:hover:not(:disabled) {
+    background:#3c89e8;
+}
+
+/* Positionnement du bouton du slider 3 */
+.sliderbutton-position-3 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+}
+
+/* ***************************** button next *************************************** */
+/* Styles communs pour les boutons de navigation */
+.next-slide,
+.prev-slide {
+    background-color: #6ac4f0;
+    border: none;
+    padding: 5px;
+    font-size: 30px;
+    width: 50px;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Styles de survol et d'activation pour les boutons de navigation */
+.next-slide:active,
+.prev-slide:active {
+    color: white;
+    transform: translateY(0.2rem);
+    width: 45px;
+}
+
+.next-slide:hover:not(:disabled),
+.prev-slide:hover:not(:disabled) {
+    background: #3c89e8;
+}
+
+/* Positionnement des boutons de navigation */
+.position1,
+.position2 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+}
+
+.slider-container:hover .position1,
+.slider-container:hover .position2 {
+    display: flex;
+}
+
+.position1 {
+    right: 0;
+    padding-right: 45px;
+}
+
+.position2 {
+    left: 0;
+    padding-left: 45px;
+}
+
+/* ***************************** slider *************************************** */
+/* Styles pour le conteneur du slider */
+.slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Styles pour le slider */
+.slider {
+    display: flex;
+    transition: transform 1s ease-in-out;
+}
+
+/* Styles pour chaque diapositive du slider */
+.slide {
+    flex: 0 0 100%;
+    box-sizing: border-box;
+    padding: 0;
+    text-align: center;
+    height: 600px;
+    /* Image de fond avec couverture totale et centrage */
+    background: url('assets/images/sliders/{{ slider.getImageUrl() }}') no-repeat center center/100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styles pour le contenu au-dessus de l'image de fond */
+.bloc {
+    color: #6ac4f0; 
+    text-align: center;
+    position: relative;
+    
+}
