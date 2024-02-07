@@ -18,7 +18,7 @@
                     </div>
                     <div class="sliderbutton-position-{{ loop.index }}">
                         <div class="sliderbutton-{{ loop.index }}">
-                            <a href="{{ path('products_for_slider', {'slider_id': slider.getId()}) }}">{{ slider.getButtonLink}}</a>
+                            <a href="{{ path('products_for_slider', {'slider_id': slider.getId()}) | e }}">{{ slider.getButtonLink}}</a>
                             
                         </div>
                     </div>
@@ -49,25 +49,26 @@
     <div class="cards-container">
         {% for product in productsPreference %}
         
-        <div class="card">                         
-            
-            <div class="card-header">
-                <a href="{{ path('app_product_by_slug', {'slug': product.slug }) }}">
-                    <img class="product-image" src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}"  >
-                </a>
-            </div>
-            <div class="productname">
-                <h3>{{ product.name }}</h3>
-            </div>
-            <div class="productprice">
-                <p>Prix : {{ product.price }} €</p>
-            </div>
+            <div class="card">                         
                 
-            <div class="addtocart">
-                <a href="{{ path('app_add_to_cart', {'productId': product.id, 'count': 1}) }}">Ajouter au panier</a>
+                <div class="card-header">
+                    <a href="{{ path('app_product_by_slug', {'slug': product.slug  | e }) }}">
+                        <img class="product-image" src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}"  >
+                    </a>
+                </div>
+                
+                <div class="productname">
+                    <h3>{{ product.name }}</h3>
+                </div>
+                <div class="productprice">
+                    <p>Prix : {{ product.price }} €</p>
+                </div>
+                    
+                <div class="addtocart">
+                    <a href="{{ path('app_add_to_cart', {'productId': product.id, 'count': 1}) }}">Ajouter au panier</a>
+                </div>
+                                                
             </div>
-                                            
-        </div>
         
 
         {% endfor %}
