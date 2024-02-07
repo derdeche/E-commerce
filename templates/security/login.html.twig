@@ -28,6 +28,8 @@
             <input class="input" type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required placeholder="Mot de passe">
         </div>
 
+        
+        
         <div class="deca1">
             <button class="button" type="submit">Se connecter</button>
         </div>
@@ -36,8 +38,7 @@
         <div class="inscription">Vous n'avez pas de compte ? <a href="/register">Inscrivez-vous </a></div>
 
 
-        <input type="hidden" name="_csrf_token"
-                value="{{ csrf_token('authenticate') }}"    >
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
 
     </form>
 </section>
