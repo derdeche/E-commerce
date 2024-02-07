@@ -6,10 +6,12 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
+    {# {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-
+    {% endfor %} #}
+    {% if error is defined %}
+    <div class="alert alert-danger">{{ error }}</div>
+{% endif %}
 
     <section class="cadre">
         
@@ -38,6 +40,8 @@
             <div class="deca1">                
                 <button class='button' type=" submit">Enregistrer</button>
             </div>
+            
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
 
             <div class="connection">Vous avez déjà un compte ? <a href="/login">Se connecter </a></div>
 
