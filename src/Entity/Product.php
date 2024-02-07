@@ -67,10 +67,12 @@ class Product
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $price = null;
 
-    /**
-     * @ORM\OneToMany(targetEntity=OrderDetail::class, mappedBy="product", orphanRemoval=true)
+  
+        /**
+     * @ORM\OneToMany(targetEntity=OrderDetail::class, mappedBy="product")
      */
     private Collection $orderDetails;
+
 
     public function __construct()
     {
