@@ -11,14 +11,14 @@
 .cards-container {
     display: flex;
     justify-content: center; 
-    gap: 50px;
+    gap: 150px;
     flex-wrap: wrap;
+    margin-bottom: 70px;
 }
 
-.preference {
+/* .preference {
    
-    margin-bottom: 50px;
-}
+} */
  h2 {
     text-align: center;
     margin-top: 50px;
@@ -41,24 +41,27 @@
     align-items: center;
     justify-content: center; 
     margin: 0;
+    
 }
 
 .card-header {
     height: 200px;
     position: relative;
-    margin-bottom: 10px;
     overflow: hidden;
-
+    margin-bottom: 10px;
+    
 }
 .card-header img {
-   
+    
     transition: transform 0.3s;
-   
+       
 }
 .product-image {
     width: 300px;
     height: 200px;
 }
+
+
 
 
 .card-header:hover img {
@@ -88,6 +91,7 @@
     color: #fff;
     text-align: center;
     transition: background-color 0.3s;
+  
 }
 
 .addtocart a {
