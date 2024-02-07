@@ -28,7 +28,8 @@
     {{ form_row(form.state) }}
     {{ form_row(form.more_details) }}
     
-    
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
+
     <button class="btn">{{ button_label|default('Save') }}</button>
     {{ form_end(form) }}
 
