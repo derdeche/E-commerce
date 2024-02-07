@@ -135,22 +135,28 @@ class HomeController extends AbstractController
         
         public function showProductBySlug(Request $request, string $slug): Response
         {
+            // Récupération du repository des produits
             $productRepository = $this->entityManager->getRepository(Product::class);
+
+            // Recherche du produit par le slug dans la base de données
             $product = $productRepository->findOneBy(['slug' => $slug]);
 
-
+            // Si le produit n'est pas trouvé, redirige vers la page d'accueil
             if (!$product) {
                 return $this->redirectToRoute('app_home');
             }
-        
+
+            // Création d'un formulaire pour la gestion de la quantité
             $form = $this->createForm(QuantityType::class);
             $form->handleRequest($request);
             
+            // Si le formulaire est soumis et valide, ajoute le produit au panier
             if ($form->isSubmitted() && $form->isValid()) {
                 $quantity = $form->get('quantity')->getData();
                 $this->cartService->addToCart($product->getId(), $quantity);
             }
-            
+
+            // Rendu du template Twig pour afficher le produit et le formulaire de quantité
             return $this->render('home/show_product_by_slug.html.twig', [
                 'product' => $product,
                 'form' => $form->createView(),
