@@ -1,3 +1,4 @@
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Catégorie {{ category.name }} {% endblock %}
@@ -6,50 +7,52 @@
    
     <section class="section-category">
 
-        <div class="category-header">
+        <div class="category-name">
             <h2>Produits de la catégorie {{ category.name }}</h2>
         </div>
-        {# Liens de tri pour ordonner les produits #}
-        <div class="sort-links">
-            <div>
-                <a href="{{ path('products_by_category', {'categoryId': categoryId, 'sort_by': 'asc'}) }}">Tri croissant</a>
-            </div>
-            <div>
-                <a href="{{ path('products_by_category', {'categoryId': categoryId, 'sort_by': 'desc'}) }}">Tri décroissant</a>
-            </div>
-        </div>
-
-
-        <div class="cards-container">
-            {% for product in product %}
-            
-                <div class="card">                         
-                    {#  le lien vers le détail du produit #}
-                    <div class="card-header">
-                        <a href="{{ path('app_product_by_slug', {'slug': product.slug }) }}">
-                            {# Image du produit #}
-                            <img class="product-image" src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}"  >
-                        </a>
+        {% if product is not empty %}
+                {# Liens de tri pour ordonner les produits #}
+                <div class="sort-links">
+                    <div>
+                        <a href="{{ path('products_by_category', {'categoryId': categoryId, 'sort_by': 'asc'}) }}">Tri croissant</a>
                     </div>
-                    {# Nom du produit #}
-                    <div class="productname">
-                        <h3>{{ product.name }}</h3>
+                    <div>
+                        <a href="{{ path('products_by_category', {'categoryId': categoryId, 'sort_by': 'desc'}) }}">Tri décroissant</a>
                     </div>
-                    {# Prix du produit #}
-                    <div class="productprice">
-                        <p>Prix : {{ product.price }} €</p>
-                    </div>
-                    {# Lien pour ajouter le produit au panier #}
-                    <div class="addtocart">
-                        <a href="{{ path('app_add_to_cart', {'productId': product.id, 'count': 1}) }}">Ajouter au panier</a>
-                    </div>
-                                                    
                 </div>
-            
 
-            {% endfor %}
-        </div>
 
+                <div class="cards-container">
+                    {% for product in product %}
+                    
+                        <div class="card">                         
+                            {#  le lien vers le détail du produit #}
+                            <div class="card-header">
+                                <a href="{{ path('app_product_by_slug', {'slug': product.slug | e }) }}">
+                                    {# Image du produit #}
+                                    <img class="product-image" src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}"  >
+                                </a>
+                            </div>
+                            {# Nom du produit #}
+                            <div class="productname">
+                                <h3>{{ product.name }}</h3>
+                            </div>
+                            {# Prix du produit #}
+                            <div class="productprice">
+                                <p>Prix : {{ product.price }} €</p>
+                            </div>
+                            {# Lien pour ajouter le produit au panier #}
+                            <div class="addtocart">
+                                <a href="{{ path('app_add_to_cart', {'productId': product.id, 'count': 1}) }}">Ajouter au panier</a>
+                            </div>
+                                                            
+                        </div>            
+
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>Aucun produit disponible dans cette catégorie.</p>
+        {% endif %}
     </section>
 
 {% endblock %}
