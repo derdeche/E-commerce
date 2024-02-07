@@ -32,11 +32,7 @@ class AddressController extends AbstractController
         $user = $this->getUser();
     
         if (!$user instanceof User) {
-            // Gérer le cas où $user n'est pas une instance de la classe User
-            // Peut-être rediriger vers une page d'erreur, par exemple
-            // ...
-    
-            // Exemple de redirection vers une page d'erreur
+          
             return $this->redirectToRoute('app_error');
         }
     
@@ -75,23 +71,7 @@ class AddressController extends AbstractController
         ]);
     }
 
-    // #[Route('/{id}/modifier-mon-adresse', name: 'app_address_edit', methods: ['GET', 'POST'])]
-    // public function edit(Request $request, Address $address, EntityManagerInterface $entityManager): Response
-    // {
-    //     $form = $this->createForm(AddressType::class, $address);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $entityManager->flush();
-
-    //         return $this->redirectToRoute('app_address_index', [], Response::HTTP_SEE_OTHER);
-    //     }
-
-    //     return $this->render('address/edit.html.twig', [
-    //         'address' => $address,
-    //         'form' => $form,
-    //     ]);
-    // }
+  
 
     #[Route('/{id}', name: 'app_address_delete', methods: ['POST'])]
     public function delete(Request $request, Address $address, EntityManagerInterface $entityManager): Response
