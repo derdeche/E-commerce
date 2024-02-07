@@ -72,7 +72,7 @@
                         </div>
                         <span> / </span>            
                         <div class="profile">
-                            <a href="{{ path('app_user', {'id': app.user.id}) }}" class="insc"><i class="fa-solid fa-user"></i>
+                            <a href="{{ path('app_user', {'id': app.user.id | e} ) }}" class="insc"><i class="fa-solid fa-user"></i>
                                 <span class="message-panier">Mon profil</span></a>
                         </div>
                         <div class="panier-container">
