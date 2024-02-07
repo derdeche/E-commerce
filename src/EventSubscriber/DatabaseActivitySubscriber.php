@@ -39,30 +39,29 @@ class DatabaseActivitySubscriber implements EventSubscriberInterface
     {
         
         if(($entity instanceof Product) && $action === "remove"){
-            // dd($entity);
-            // remove image
+           
             $imageUrls = $entity->getImageUrls();
             
             foreach ($imageUrls as $imageUrl) {
                 $filelink = $this->appKernel->getProjectDir(). "/public/assets/images/products/".$imageUrl;                
                 $result = unlink($filelink);
-                // dd($filelink);
+               
                 try {
-                    //code...
+                   
                     $result = unlink($filelink);
                 } catch (\Throwable $th) {
-                    //throw $th;
+                   
                 }
             }
 
         }
         if(($entity instanceof Category) && $action === "remove"){
-            // remove image
+          
             $filename = $entity->getImageUrl();
 
             $filelink = $this->appKernel->getProjectDir(). "/public/assets/images/categories/".$filename;
             $result = unlink($filelink);
-            // dd($result);
+           
 
 
             
