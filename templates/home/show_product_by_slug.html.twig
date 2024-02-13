@@ -1,23 +1,56 @@
 
-{% extends 'base.html.twig' %}
-
+          {% extends 'base.html.twig' %}
 
 {% block title %} {{ product.name }} {% endblock %}
 
 {% block body %}
-    <h3>Produits de la catégorie {{ product.category }}</h3>
-    <ul class="product-details">
-        <li>{{ product.name }} - {{ product.price }} €</li>
-        <li>{{ product.description }}</li>
-    </ul>
-    <a href="{{ path('app_cart') }}" class="">Voir mon panier</a>
-    {{ form_start(form, {'attr': {'class': 'add-to-cart-form'}}) }}
-    {{ form_widget(form.quantity) }}
-    <button type="submit" class="add-to-cart-button">Ajouter au panier</button>
-    {{ form_end(form) }}
+<section class="product-details">
+    <h3>Détails du produit de la catégorie {{ product.category }}</h3>
+
+    <div class="product">
+        <div class="image">
+            <figure>
+                <img class="product-image0" src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}"  >
+            </figure>
+            <div class="image-small">
+                {% for image in product.imageUrls %}
+                    <img class="image-z" src="{{ asset('assets/images/products/' ~ image) }}" alt="{{ product.name }}"  >
+                {% endfor %}
+            </div>
+        </div>
+        <div class="info">
+            <div>
+                <h3>{{ product.name }}</h3>
+            </div>
+            
+            <p>Prix : {{ product.price }} €</p>
+        
+            <div class="cart-actions">
+                {{ form_start(form, {'attr': {'class': 'add-to-cart-form'}}) }}
+
+                {{ form_widget(form.quantity) }}
+
+                <button type="submit" class="add-to-cart-button">Ajouter au panier</button>
+                {{ form_end(form) }}
+                <div class="lien-panier">
+                    <a href="{{ path('app_cart') }}" >Voir mon panier</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="info">
+        <div class="description">
+            <li>{{ product.description }}</li>
+        </div>
+        <div class="more">
+            <li>{{ product.moreDescription }}</li>
+        </div>
+        <div class="additional">
+            <li>{{ product.additionalInfos }}</li>
+        </div>
+    </div>
+</section>
 {% endblock %}
 
-
-
-
-         
