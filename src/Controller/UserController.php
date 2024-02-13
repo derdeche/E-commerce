@@ -88,8 +88,8 @@ class UserController extends AbstractController
         // Je déconnecte l'utilisateur et supprime son token de sécurité
         $this->container->get('security.token_storage')->setToken(null);
 
-        $this->addFlash('success', 'Votre compte a été supprimé avec succès.');
-        $this->addFlash('success-class', 'hide-message');
+        // $this->addFlash('success', 'Votre compte a été supprimé avec succès.');
+        // $this->addFlash('success-class', 'hide-message');
 
         // Je redirige l'utilisateur vers la page d'accueil
         return $this->redirectToRoute('app_home');
