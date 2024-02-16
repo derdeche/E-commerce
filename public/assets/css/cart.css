@@ -1,15 +1,111 @@
-.cart-preview {
-    position: fixed;
-    top: 50px;
-    right: 20px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
-    display: none;
-    z-index: 1000;
+
+
+*{
+  margin : 0;
+  padding: 0;    
+  outline: none;
+  font-family: "Poppins" , sans-serif;
 }
 
-.cart-content {
-    width: 150px;
-    height: 120px;
+.cart-table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+
+.title-panier {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.panier-vide {
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  font-size: 40px;
+}
+  
+.table3 {
+    width: 70%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border: solid 1px #000;
+    
+      
+}
+
+.reste {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+}
+
+.table th, .table td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+.table img {
+  max-width: 50px;
+  height: auto;
+}
+
+.product-remove a {
+  color: #ff0000;
+  text-decoration: none;
+}
+
+.product-remove a:hover {
+  text-decoration: underline;
+}
+ 
+
+.affichage {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+}
+.plus {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+}
+.moin {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.validate-cart-button {
+  background-color: #3498db;
+  font-family: inherit;
+  display: inline-block;
+  width: 150px;
+  height: 2.6em;
+  line-height: 2.5em;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 20px;
+  font-size: 17px;
+  z-index: 1;
+  color: var(--color);
+  border: 2px solid var(--color);
+  border-radius: 6px;
+  position: relative;
+  color: white ;
+}
+
+  
+  
+  
