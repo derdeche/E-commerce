@@ -22,12 +22,12 @@
                 </div>
 
 
-                <div class="cards-container">
+                <div class="cards3-container">
                     {% for product in product %}
                     
-                        <div class="card">                         
+                        <div class="card3">                         
                             {#  le lien vers le détail du produit #}
-                            <div class="card-header">
+                            <div class="card3-header">
                                 <a href="{{ path('app_product_by_slug', {'slug': product.slug | e }) }}">
                                     {# Image du produit #}
                                     <img class="product-image" src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}"  >

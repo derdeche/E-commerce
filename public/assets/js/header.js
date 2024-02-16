@@ -15,4 +15,11 @@ function updateCartItemCount() {
         .catch(error => console.error('Erreur lors de la récupération du nombre d\'articles dans le panier', error));
 }
 
-
+// function myFunction() {
+//     var x = document.getElementById("myNavList");
+//     if (x.className === "navlist") {
+//         x.className += "responsive";
+//     } else {
+//         x.className = "navlist";
+//     }
+//   }

@@ -89,25 +89,36 @@ class HomeController extends AbstractController
     }
   
 
-    #[Route("/produits-de-la-categorie/{categoryId}", name: "products_by_category")]
+   /**
+     * @Route("/produits-de-la-categorie/{categoryId}", name="products_by_category")
+     */
     public function productsByCategory(
+        EntityManagerInterface $entityManager,
         CategoryRepository $categoryRepo,
         Request $request,
         $categoryId
     ): Response {
-        // on récupère la catégorie par son id
-        $category = $categoryRepo->find($categoryId);
 
-        // Vérifiez si la catégorie existe
+        // on vérifie si la catégorie existe
+        $category = $categoryRepo->find($categoryId);
         if (!$category) {
-            // Si la catégorie n'existe pas, redirigez vers la page d'accueil
+        // Si la catégorie n'existe pas, redirigez vers la page d'accueil
             return $this->redirectToRoute('app_home');
         }
+        
+        // on utilise l'EntityManager pour créer une requête DQL
+        $query = $entityManager->createQuery(
+            'SELECT p
+            FROM App\Entity\Product p
+            JOIN p.category c
+            WHERE c.id = :categoryId'
+        )->setParameter('categoryId', $categoryId);
 
-        // on récupère les produits de la catégorie
-        $products = $category->getProducts()->toArray();
+        // on obtient les résultats de la requête
+        $products = $query->getResult();
 
-        // on récupère le paramètre de tri
+
+        // on récupére le paramètre de tri
         $sortBy = $request->query->get('sort_by');
 
         // on applique le tri si le paramètre est défini
@@ -128,8 +139,6 @@ class HomeController extends AbstractController
         ]);
     }
 
-        
-        
         
         #[Route("/produit/{slug}", name:"app_product_by_slug")]
         

@@ -4,98 +4,79 @@
 
 {% block body %}
 
-                
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th class="">&nbsp;</th>
-                                <th class="">Produit</th>
-                                <th class="">Prix</th>
-                                <th class="">Quantité</th>
-                                <th class="">Total</th>
-                                <th class="">Supprimer</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                    
-                            {% for item in cart.items %}
-                            <tr>
-                                <td class=""><a><img width="50" alt=""
-                                    src="/assets/images/products/{{ item.product.imageUrls[0] }}"></a>
-                                </td>
-                                {{ item.product.name }} 
-                                {{ item.product.price  }} {{'€'}} X {{ item.quantity}} 
-                               
-                                <div class="">
-                                    <h6>Prix Total</h6>
-                                </div>
-                                
-                                <td data-title="Total" class="product-subtotal">
-                                    {{ item.sub_total  }} </td>
-                                
-                            </tr>
-                            {% endfor %}
-                    
-                        </tbody>
-                    </table>
-                    
-                    
-                    <table>
-                        <tr>
-                            <td class="">Total</td>
-                            <td class="">{{ cart.sub_total }}</td>
-                        </tr>
-                        <tr>
-                            <td class="">Livraison</td>
-                            <td class="">Livraison en France uniquement( Livraison gratuite)</td>
-                        </tr>
-                        <tr>
-                            <td class="">Total</td>
-                            <td class=""><strong>{{ cart.sub_total }}</strong></td>
-                        </tr>
-                    </table>
-                    <h4>Adresse de Livraison</h4>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <form method="post" action="{{ path('app_checkout-order') }}" onsubmit="return validateOrder()">
-                        <select name="adresse-livraison" id="adresse-livraison">
-                            <option value=""> -- Choisir une adresse --</option>
-                            {% for address in addresses %}
-                                <option value="{{ address.street ~ ', ' ~ address.codePostal ~ ', ' ~ address.city ~ ', ' ~ address.city  }}">
-                                    {{ address.street }}                                    
-                                    
-                                    {{ address.codePostal }}
-                                    {{ address.state }}
-                                    {{ address.city }}
-                                </option>
-                                {% endfor %}
-                            </select>
-
-                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-                        <button type="submit" class="validate-button" id="validate-order-button">Valider ma commande</button>
-                    </form>
-                    
-                    <script>
-                        function validateOrder() {
-                            var livraisonSelected = document.getElementById('adresse-livraison').value;
-                        
-                            if (livraisonSelected === '') {
-                                alert('Veuillez ajouter ou choisir une adresse de livraison avant de valider votre commande.');
-                                return false; // Empêche la soumission du formulaire
-                            } else {
-                                return true; // Autorise la soumission du formulaire
-                            }
-                        }
-                        
-                    </script>
-                    
-                
+<div class="cart-container">
+    <h1 class="cart-title">Validation de votre commande</h1>
+    <div class="checkout-table">
+        <table class="table1">
+            <thead>
+                <tr>
                    
+                    <th class="">Produit</th>
+                    <th class="">Prix</th>
+                    <th class="">Quantité</th>
+                    <th class="">Total</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart.items %}
+                    <tr>
+                       
+                        <td class="product-name">{{ item.product.name }}</td>
+                        <td class="product-price">{{ item.product.price }} €</td>
+                        <td class="product-quantity">{{ item.quantity }}</td>
+                        <td class="product-total">{{ item.sub_total }}</td>
+                       
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="cart-summary">
+        <table>
+            <tr>
+                <td>Livraison en France uniquement (Livraison gratuite)</td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td><strong>{{ cart.sub_total }}</strong></td>
+            </tr>
+        </table>
+
+        <h4 class="livraison">Adresse de Livraison</h4>
+
+        <form method="post" action="{{ path('app_checkout-order') }}" onsubmit="return validateOrder()">
+            <select name="adresse-livraison" id="adresse-livraison">
+                <option value=""> -- Choisir une adresse --</option>
+                {% for address in addresses %}
+                    <option value="{{ address.street ~ ', ' ~ address.codePostal ~ ', ' ~ address.city ~ ', ' ~ address.city  }}">
+                        {{ address.street }}                               
+                        {{ address.codePostal }}
+                        {{ address.state }}
+                        {{ address.city }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <button type="submit" class="validate-button" id="validate-order-button">Valider ma commande</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function validateOrder() {
+        var livraisonSelected = document.getElementById('adresse-livraison').value;
+
+        if (livraisonSelected === '') {
+            alert('Veuillez ajouter ou choisir une adresse de livraison avant de valider votre commande.');
+            return false; // Empêche la soumission du formulaire
+        } else {
+            return true; // Autorise la soumission du formulaire
+        }
+    }
+</script>
+
 {% endblock %}

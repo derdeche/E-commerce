@@ -1,67 +1,150 @@
-<header>
+
+
     
     <section class="header">
            
             
 
             <div class="logo">
+                <a href="/home">
                 <img src="{{ asset('assets/images/logo/EveilKids-removebg-preview.svg') }}" alt="">
+                </a>
             </div>
 
-            <div class="menu ">
-                <nav>
-                    <ul>
-                        {# Lien vers la page d'accueil #}
-                        <li><a href="/home">Accueil</a></li>      
-                        {# Les catégories "Jouets par Âge"   #}
-                        <li class="categories-dropdown">Jouets par Âge
-                            <ul class="categories-menu">
-                                                                
-                                <li><a href="{{ path('products_by_category', {'categoryId': 1}) }}">0 - 2 Ans</a></li>
-                                <li><a href="{{ path('products_by_category', {'categoryId': 2}) }}">2 - 4 Ans</a></li>
-                                <li><a href="{{ path('products_by_category', {'categoryId': 3}) }}">5 - 7 Ans</a></li>
-                                <li><a href="{{ path('products_by_category', {'categoryId': 4}) }}">8 - 12 Ans</a></li>                                 
-                                                                                   
+            {# ---------------------------------------MENU FULL------------------------------------------ #}
+              <div class="burger">
+
+                <nav class="navbar">
+                    <div class="container-fluid">
+                    
+                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                    
+                      <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav me-auto mt-5 mb-lg-0">
+                          <!-- Liens de navigation -->
+                        
+                          <li class="nav-item">
+                            <a class="nav-link" href="/home"><strong>Accueil</strong></a>
+                          </li>
+                        
+                          <li class="nav-item categories-dropdown">
+                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><strong>Jouets par Âge</strong></a>
+                            <ul class="dropdown-menu categories-menu">
+                              <li><a class="dropdown-item" href="{{ path('products_by_category', {'categoryId': 1}) }}">0 - 2 Ans</a></li>
+                              <li><a class="dropdown-item" href="{{ path('products_by_category', {'categoryId': 2}) }}">2 - 4 Ans</a></li>
+                              <li><a class="dropdown-item" href="{{ path('products_by_category', {'categoryId': 3}) }}">5 - 7 Ans</a></li>
+                              <li><a class="dropdown-item" href="{{ path('products_by_category', {'categoryId': 4}) }}">8 - 12 Ans</a></li>
                             </ul>
-                        </li>
-                        <li class="categories-dropdown">Mobilité et Motricité
-                            <ul class="categories-menu">
-                                {# Les catégories spécifiques à la mobilité et la motricité #}
-                                <li><a href="{{ path('products_by_category', {'categoryId': 5}) }}">Mobilier et Rangement</a></li>
-                                <li><a href="{{ path('products_by_category', {'categoryId': 6}) }}">Motricité globale</a></li>
-                                <li><a href="{{ path('products_by_category', {'categoryId': 7}) }}">Tapis educatifs</a></li>                                                                                
+                          </li>
+                        
+                          <li class="nav-item categories-dropdown">
+                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><strong>Mobilité et Motricité</strong></a>
+                            <ul class="dropdown-menu categories-menu">
+                              <li><a class="dropdown-item" href="{{ path('products_by_category', {'categoryId': 5}) }}">Mobilier et Rangement</a></li>
+                              <li><a class="dropdown-item" href="{{ path('products_by_category', {'categoryId': 6}) }}">Motricité globale</a></li>
+                              <li><a class="dropdown-item" href="{{ path('products_by_category', {'categoryId': 7}) }}">Tapis educatifs</a></li>
                             </ul>
-                        </li>
-                        <li class="categories-dropdown">Puzzles
-                            <ul class="categories-menu">
-                                {# Les puzzles pour les différentes tranches d'âge #}
-                                <li><a href="{{ path('products_by_category', {'categoryId': 8}) }}">Puzzles de 1 à 2 Ans</a></li>
-                                <li><a href="{{ path('products_by_category', {'categoryId': 9}) }}">Puzzles de 2 à 3 Ans</a></li>
-                                <li><a href="{{ path('products_by_category', {'categoryId': 10}) }}">Puzzles de 3 à 4 Ans</a></li>                                                                                
-                                <li><a href="{{ path('products_by_category', {'categoryId': 11}) }}">Puzzles de 4 à 5 Ans</a></li>                                                                                
+                          </li>
+                        
+                          <li class="nav-item categories-dropdown">
+                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><strong>Puzzles</strong></a>
+                            <ul class="dropdown-menu categories-menu">
+                              <li><a class="dropdown-item" href="{{ path('products_by_category', {'categoryId': 8}) }}">Puzzles de 1 à 2 Ans</a></li>
+                              <li><a class="dropdown-item" href="{{ path('products_by_category', {'categoryId': 9}) }}">Puzzles de 2 à 3 Ans</a></li>
+                              <li><a class="dropdown-item" href="{{ path('products_by_category', {'categoryId': 10}) }}">Puzzles de 3 à 4 Ans</a></li>
+                              <li><a class="dropdown-item" href="{{ path('products_by_category', {'categoryId': 11}) }}">Puzzles de 4 à 5 Ans</a></li>
                             </ul>
-                        </li>
-                        <li class="categories-dropdown">Coffrets
-                            <ul class="categories-menu">
-                                {# Les coffrets pour les différentes tranches d'âge #}
-                                <li><a href="{{ path('products_by_category', {'categoryId': 12}) }}">Coffrets pour les tout-petits</a></li>
-                                <li><a href="{{ path('products_by_category', {'categoryId': 13}) }}">Coffrets 3 à 6 Ans</a></li>
-                                <li><a href="{{ path('products_by_category', {'categoryId': 14}) }}">Coffrets 6 à 13 Ans</a></li>                                                                                
-                                <li><a href="{{ path('products_by_category', {'categoryId': 15}) }}">Coffrets dessin et peinture</a></li>                                                                                
+                          </li>
+                        
+                          <li class="nav-item categories-dropdown">
+                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><strong>Coffrets</strong></a>
+                            <ul class="dropdown-menu categories-menu">
+                              <li><a class="dropdown-item" href="{{ path('products_by_category', {'categoryId': 12}) }}">Coffrets pour les tout-petits</a></li>
+                              <li><a class="dropdown-item" href="{{ path('products_by_category', {'categoryId': 13}) }}">Coffrets 3 à 6 Ans</a></li>
+                              <li><a class="dropdown-item" href="{{ path('products_by_category', {'categoryId': 14}) }}">Coffrets 6 à 13 Ans</a></li>
+                              <li><a class="dropdown-item" href="{{ path('products_by_category', {'categoryId': 15}) }}">Coffrets dessin et peinture</a></li>
                             </ul>
-                        </li>
-                        <li class="categories-dropdown">Livres
-                            <ul class="categories-menu">
-                                {# Les catégories de livres #}
-                                <li><a href="{{ path('products_by_category', {'categoryId': 16}) }}">Livres montessori</a></li>                                                                                
-                                <li><a href="{{ path('products_by_category', {'categoryId': 17}) }}">Livres à toucher</a></li>
-                                <li><a href="{{ path('products_by_category', {'categoryId': 18}) }}">Livres sonores</a></li>
-                                <li><a href="{{ path('products_by_category', {'categoryId': 19}) }}">Livres animés</a></li>                                                                                
+                          </li>
+                        
+                          <li class="nav-item categories-dropdown">
+                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><strong>Livres</strong></a>
+                            <ul class="dropdown-menu categories-menu">
+                              <li><a class="dropdown-item" href="{{ path('products_by_category', {'categoryId': 16}) }}">Livres montessori</a></li>
+                              <li><a class="dropdown-item" href="{{ path('products_by_category', {'categoryId': 17}) }}">Livres à toucher</a></li>
+                              <li><a class="dropdown-item" href="{{ path('products_by_category', {'categoryId': 18}) }}">Livres sonores</a></li>
+                              <li><a class="dropdown-item" href="{{ path('products_by_category', {'categoryId': 19}) }}">Livres animés</a></li>
                             </ul>
-                        </li>
-                    </ul>
-                </nav>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </nav>
+                
+              </div>
+
+            
+
+            {# ---------------------------------------------MENU BURGER---------------------------------------------------- #}
+
+            <div class="menu" >
+              <nav class="navlist" id="myNavList" >
+                  <ul >
+                      {# Lien vers la page d'accueil #}
+                      <li><a href="/home">Accueil</a></li>      
+                      {# Les catégories "Jouets par Âge"   #}
+                      <li class="categories-dropdown">Jouets par Âge
+                          <ul class="categories-menu">
+                                                              
+                              <li><a href="{{ path('products_by_category', {'categoryId': 1}) }}">0 - 2 Ans</a></li>
+                              <li><a href="{{ path('products_by_category', {'categoryId': 2}) }}">2 - 4 Ans</a></li>
+                              <li><a href="{{ path('products_by_category', {'categoryId': 3}) }}">5 - 7 Ans</a></li>
+                              <li><a href="{{ path('products_by_category', {'categoryId': 4}) }}">8 - 12 Ans</a></li>                                 
+                                                                                 
+                          </ul>
+                      </li>
+                      <li class="categories-dropdown">Mobilité et Motricité
+                          <ul class="categories-menu">
+                              {# Les catégories spécifiques à la mobilité et la motricité #}
+                              <li><a href="{{ path('products_by_category', {'categoryId': 5}) }}">Mobilier et Rangement</a></li>
+                              <li><a href="{{ path('products_by_category', {'categoryId': 6}) }}">Motricité globale</a></li>
+                              <li><a href="{{ path('products_by_category', {'categoryId': 7}) }}">Tapis educatifs</a></li>                                                                                
+                          </ul>
+                      </li>
+                      <li class="categories-dropdown">Puzzles
+                          <ul class="categories-menu">
+                              {# Les puzzles pour les différentes tranches d'âge #}
+                              <li><a href="{{ path('products_by_category', {'categoryId': 8}) }}">Puzzles de 1 à 2 Ans</a></li>
+                              <li><a href="{{ path('products_by_category', {'categoryId': 9}) }}">Puzzles de 2 à 3 Ans</a></li>
+                              <li><a href="{{ path('products_by_category', {'categoryId': 10}) }}">Puzzles de 3 à 4 Ans</a></li>                                                                                
+                              <li><a href="{{ path('products_by_category', {'categoryId': 11}) }}">Puzzles de 4 à 5 Ans</a></li>                                                                                
+                          </ul>
+                      </li>
+                      <li class="categories-dropdown">Coffrets
+                          <ul class="categories-menu">
+                              {# Les coffrets pour les différentes tranches d'âge #}
+                              <li><a href="{{ path('products_by_category', {'categoryId': 12}) }}">Coffrets pour les tout-petits</a></li>
+                              <li><a href="{{ path('products_by_category', {'categoryId': 13}) }}">Coffrets 3 à 6 Ans</a></li>
+                              <li><a href="{{ path('products_by_category', {'categoryId': 14}) }}">Coffrets 6 à 13 Ans</a></li>                                                                                
+                              <li><a href="{{ path('products_by_category', {'categoryId': 15}) }}">Coffrets dessin et peinture</a></li>                                                                                
+                          </ul>
+                      </li>
+                      <li class="categories-dropdown">Livres
+                          <ul class="categories-menu">
+                              {# Les catégories de livres #}
+                              <li><a href="{{ path('products_by_category', {'categoryId': 16}) }}">Livres montessori</a></li>                                                                                
+                              <li><a href="{{ path('products_by_category', {'categoryId': 17}) }}">Livres à toucher</a></li>
+                              <li><a href="{{ path('products_by_category', {'categoryId': 18}) }}">Livres sonores</a></li>
+                              <li><a href="{{ path('products_by_category', {'categoryId': 19}) }}">Livres animés</a></li>                                                                                
+                          </ul>
+                      </li>
+                  </ul>
+                  
+              </nav>
+          
             </div>
+            
 
             <div class="user-actions">
                 {% if app.user %}
@@ -82,7 +165,6 @@
                                     <span class="message-panier">Voir mon panier</span>
                                     
                                 </a>
-                           
                         </div>
                     </div>
                 {% else %}
@@ -105,18 +187,30 @@
                     </div>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN')%}
-                <div class="administrateur">
-                    <li><a href="{{path('admin')}}">Espace administration</a></li>
-                </div>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{path('admin')}}">Espace administration</a>
+                  </li>
                 {% endif %}
             </div>
-            
-            </div>
+        </div>
      
         </div>
+
     </section>
+    {# <script>
+        function myFunction() {
+            var x = document.getElementById("myNavList");
+            if (x.className === "navlist" ) {
+                x.className += "responsive" ;
+                
+            } else {
+                x.className = "navlist";
+            }
+          }
+    </script> #}
     
    
-</header>
+    
+
 
 

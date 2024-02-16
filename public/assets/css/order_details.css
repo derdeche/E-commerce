@@ -1,0 +1,65 @@
+*{
+    margin : 0;
+    padding: 0;
+    outline: none;
+    font-family: "Poppins" , sans-serif;
+  
+} 
+
+.container-order-details {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    margin: auto; 
+}
+
+.order-details-h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 50px;
+}
+
+.order-details_status,
+.order-details-total,
+.order-details-commande {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+
+
+.order-details-table th,
+.order-details-table td {
+    /* border: 1px solid #ddd; */
+    padding: 10px;
+    text-align: left;
+}
+
+.order-details-table th {
+    background-color: #f2f2f2;
+}
+
+.order-details-retour {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.order-details-retour a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.order-details-retour a:hover {
+    background-color: #0056b3;
+}

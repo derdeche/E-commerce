@@ -1,37 +1,60 @@
+
+
 {% extends 'base.html.twig' %}
+
 {% block body %}
-<h1>Détails de la commande N° {{ order.id }}</h1>
 
+    <h1 class="order-details-h1">Détails de la commande N° {{ order.id }}</h1>
 
-{% if order is defined %}
-    <p>Status: {{ order.status }}</p>
-    <p>Coût total: {{ order.orderCost }}</p>
+  <div class="container-order-details">
+        <p class="order-details_status">Statut : {{ order.status }}</p>
+        <p class="order-details-total">Coût total : {{ order.orderCost }} €</p>
 
-    <h2>Produits commandés</h2>
-    <ul>
-        {% for orderDetail in orderDetails %}
-            <li>
-                {{ orderDetail.product.name }} - Quantité: {{ orderDetail.quantity }} - Coût total du produit: {{ orderDetail.getTotalCost }}
-            </li>
-        {% endfor %}
-    </ul>
+        <h2 class="order-details-commande">Produits commandés</h2>
+        <table class="order-details-table">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Quantité</th>
+                    <th>Coût total du produit</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for orderDetail in orderDetails %}
+                    <tr>
+                        <td>{{ orderDetail.product.name }}</td>
+                        <td>{{ orderDetail.quantity }}</td>
+                        <td>{{ orderDetail.getTotalCost }} € </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
-    <ul>
-        ***************************
-        {% for productId, productInfo in productQuantities %}
-    <div>
-        <h3>Produit #{{ productId }} - {{ productInfo.quantity }}</h3>
-        <p>Quantité: {{ productInfo.quantity }}</p>
-        <p>Prix unitaire: {{ productInfo.price }} €</p>
-        <p>Total: {{ productInfo.quantity * productInfo.price }} €</p>
+        <h2 class="order-details-commande">Détails des produits</h2>
+        <table class="order-details-table">
+            <thead>
+                <tr>
+                    <th>Produit #</th>
+                    <th>Quantité</th>
+                    <th>Prix unitaire</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for productId, productInfo in productQuantities %}
+                    <tr>
+                        <td>{{ productId }}</td>
+                        <td>{{ productInfo.quantity }}</td>
+                        <td>{{ productInfo.price }} €</td>
+                        <td>{{ productInfo.quantity * productInfo.price }} €</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
     </div>
-{% endfor %}
-
-    </ul>
-{% else %}
-    <p>La variable "order" n'est pas définie.</p>
-{% endif %}
-
-<a href="{{ path('app_user', {'id': app.user.id}) }}">retourner à mon compte</a>
-
+    
+    <div class="order-details-retour">
+        <a href="{{ path('app_user', {'id': app.user.id}) }}">Retourner à mon compte</a>
+    </div>
 {% endblock %}

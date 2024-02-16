@@ -25,12 +25,12 @@ class AddressType extends AbstractType
         //     'expanded' => true, 
         //     'multiple' => false, 
         // ])
-            ->add('client_name')
-            ->add('street')
-            ->add('code_postal')
-            ->add('city')
-            ->add('state')
-            ->add('more_details')
+        ->add('client_name', null, ['label' => false])
+        ->add('street', null, ['label' => false])
+        ->add('code_postal', null, ['label' => false])
+        ->add('city', null, ['label' => false])
+        ->add('state', null, ['label' => false])
+            // ->add('more_details')
             
              ->add('user_id', HiddenType::class, [
                  'mapped' => false,
