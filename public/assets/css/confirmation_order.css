@@ -1,0 +1,41 @@
+*{
+    margin : 0;
+    padding: 0;    
+    outline: none;
+    font-family: "Poppins" , sans-serif;
+  }
+
+  .confirmation-commande {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: auto;
+    
+    
+}
+.confirmation-commande h1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: #ff6b6b;
+      margin-bottom: 20px;
+    }
+    .confirmation-commande p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+    .confirmation-commande a {
+        display: flex;
+        font-size: 36px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-decoration: none;
+        color: #ff6b6b;
+    }
