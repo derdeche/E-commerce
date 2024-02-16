@@ -81,6 +81,10 @@
 /* Style pour les actions du panier */
 .cart-actions {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    
+
 }
 
 .cart-actions a, .add-to-cart-button {
@@ -96,6 +100,7 @@
 }
 
 .add-to-cart-button {
+    margin-top: 15px;
     background-color: #e74c3c;
     border: 1px solid #c0392b;
 }
@@ -138,5 +143,6 @@
 
 .lien-panier  {
     margin-top: 25px;
+    align-items: center;
     
 }
