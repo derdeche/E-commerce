@@ -3,40 +3,57 @@
 {% block title %}mon-compte{% endblock %}
 
 {% block body %}
-    <h1>Présentation du compte</h1>
+    
+<section class="profil">
 
-    <h2>Profil</h2>
-    <h3>Pseudo: {{ pseudo }}</h3>
-    <h3>Email: {{ email }}</h3>
+    <div class="info-profil">
+        <h2>Mon Profil</h2>
+        <p>Pseudo : {{ pseudo }}</p>
+        <p>Email : {{ email }}</p>
+    </div>
+
+    <div class="liste-adresses">
 
     {% for address in addresses %}
         <h2>Adresse de livraison</h2>
-        <h3>Nom du client: {{ address.clientName }}</h3>
-        <h3>Rue: {{ address.street }}</h3>
-        <h3>Code Postal: {{ address.codePostal }}</h3>
-        <h3>Ville: {{ address.city }}</h3>
-        <h3>Pays: {{ address.state }}</h3>
+        <p>Nom du client: {{ address.clientName }}</p>
+        <p>Rue: {{ address.street }}</p>
+        <p>Code Postal: {{ address.codePostal }}</p>
+        <p>Ville: {{ address.city }}</p>
+        <p>Pays: {{ address.state }}</p>
         <form method="post" action="{{ path('app_address_delete', {'id': address.id}) }}">
             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ address.id) }}">
-            <button class="btn">Supprimer cette adresse</button>
+            <button class="liste-adresse-button">Supprimer cette adresse</button>
         </form>
     {% endfor %}
 
-    <a href="{{ path('app_address_new') }}">Ajouter une adresse</a>
+    </div>
 
-    <h2>Mes Commandes</h2>
+    <div class="ajout-adresse">
+        <a href="{{ path('app_address_new') }}">Ajouter une adresse</a>
+    </div>
+
+    <div class="mes-commandes">
+    <h2 >Mes Commandes</h2>
 
     {% if orders is not empty %}
         {% for order in orders %}
-            <h3>Commande n°{{ order.id }} - Statut: {{ order.status }} - Coût TTC: {{ order.orderCostHt }} - Coût HTT: {{ order.orderCost }} - Taxe: {{ order.Taxe }} % - Adresse de livraison: {{ order.deliveryAddress }} - Date de création: {{ order.createdAt.format('d-m-Y H:i:s') }} </h3>
+            <p>Commande n°{{ order.id }} </p> 
+            <p>Statut: {{ order.status }} </p> 
+            <p>Coût total: {{ order.orderCost }} € </p>
+            <p>Adresse de livraison: {{ order.deliveryAddress }} 
+            <p>Date de création: {{ order.createdAt.format('d-m-Y H:i:s') }} </p>
             <a href="{{ path('app_order_details', { 'id':order.id})}}">Détails de la commande</a>
             {% endfor %}
     {% else %}
         <p>Aucune commande.</p>
     {% endif %}
 
-    
+    </div>
 
-    <a href="{{ path('delete_user') }}">Supprimer mon compte</a>
+    <div class="suppression-compte">    
+        <a href="{{ path('delete_user') }}">Supprimer mon compte</a>
+    </div>
+</section>
 
 {% endblock %}
