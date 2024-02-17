@@ -1,0 +1,93 @@
+*{
+    margin : 0;
+    padding: 0;
+    outline: none;
+    font-family: "Poppins" , sans-serif;
+    
+  
+}
+
+.profil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: 50px auto;
+}
+
+.info-profil, .liste-adresses, .ajout-adresse, .mes-commandes, .suppression-compte {
+    margin-bottom: 30px;
+}
+
+.info-profil {
+    width: 80%;
+
+
+}
+
+.info-profil, .liste-adresses, .ajout-adresse, .mes-commandes {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.liste-adresses, .ajout-adresse, .mes-commandes {
+    display: inline-block;
+    width: 80%;
+    vertical-align: top;
+    margin-right: 2%;
+}
+
+.info-profil {
+    width: 65%;
+    display: inline-block;
+}
+.info-profil h2, .liste-adresses h2, .mes-commandes h2 {
+    margin-bottom: 20px;
+    color: #6ac4f0;
+    font-size: 28px;
+}
+
+.ajout-adresse a, .suppression-compte a {
+    text-decoration: none;
+    color: #fff;
+    background-color: #3498db;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+.ajout-adresse  {
+    display: flex;
+    justify-content: center;
+
+}
+
+.ajout-adresse a:hover, .suppression-compte a:hover {
+    background-color: #2980b9;
+}
+
+.liste-adresse-button {
+    
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.mes-commandes {
+    text-decoration: none;
+
+}
+
+.btn:hover {
+    background-color: #c0392b;
+}
+
+
+.info-profil , .liste-adresses p, .mes-commandes p {
+    color: black;
+    font-size: 24px;
+}
