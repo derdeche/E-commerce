@@ -1,19 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Montessori {% endblock %}
+
+{% block body %}
+
+
+
 {% if sliderId == 1 %}
+
+
+    <div class="category-name">
+        <h2>Découvrez nos meilleurs sélections de jouets pour vos enfants</h2>
+    </div>
+
     {% for product in productsSpecialOffer %}
-        <div class="product">
-            {{ product.name }} - {{ product.price }}
-        </div>
+        
+            <div class="cards3-container">
+                
+                
+                    <div class="card3">                         
+                        {#  le lien vers le détail du produit #}
+                        <div class="card3-header">
+                            <a href="{{ path('app_product_by_slug', {'slug': product.slug | e }) }}">
+                                {# Image du produit #}
+                                <img class="product-image" src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}"  >
+                            </a>
+                        </div>
+                        {# Nom du produit #}
+                        <div class="productname">
+                            <h3>{{ product.name }}</h3>
+                        </div>
+                        {# Prix du produit #}
+                        <div class="productprice">
+                            <p>Prix : {{ product.price }} €</p>
+                        </div>
+                        {# Lien pour ajouter le produit au panier #}
+                        <div class="addtocart">
+                            <a href="{{ path('app_add_to_cart', {'productId': product.id, 'count': 1}) }}">Ajouter au panier</a>
+                        </div>
+                                                        
+                    </div>            
+
+               
+            </div>
+        
     {% endfor %}
 {% elseif sliderId == 2 %}
+
+    <div class="category-name">
+        <h2>Découvrez nos meilleurs sélections de jouets pour vos enfants</h2>
+    </div>
+
     {% for product in productsNewCollection %}
-        <div class="product">
-            {{ product.name }} - {{ product.price }}
-        </div>
+
+    <div class="cards3-container">
+                
+                
+        <div class="card3">                         
+            {#  le lien vers le détail du produit #}
+            <div class="card3-header">
+                <a href="{{ path('app_product_by_slug', {'slug': product.slug | e }) }}">
+                    {# Image du produit #}
+                    <img class="product-image" src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}"  >
+                </a>
+            </div>
+            {# Nom du produit #}
+            <div class="productname">
+                <h3>{{ product.name }}</h3>
+            </div>
+            {# Prix du produit #}
+            <div class="productprice">
+                <p>Prix : {{ product.price }} €</p>
+            </div>
+            {# Lien pour ajouter le produit au panier #}
+            <div class="addtocart">
+                <a href="{{ path('app_add_to_cart', {'productId': product.id, 'count': 1}) }}">Ajouter au panier</a>
+            </div>
+                                            
+        </div>            
+
+   
+</div>
     {% endfor %}
 {% elseif sliderId == 3 %}
+
+    <div class="category-name">
+        <h2>Découvrez nos meilleurs sélections de jouets pour vos enfants</h2>
+    </div>
+
     {% for product in productsBestSeller %}
-        <div class="product">
-            {{ product.name }} - {{ product.price }}
-        </div>
+    
+    <div class="cards3-container">
+                
+                
+        <div class="card3">                         
+            {#  le lien vers le détail du produit #}
+            <div class="card3-header">
+                <a href="{{ path('app_product_by_slug', {'slug': product.slug | e }) }}">
+                    {# Image du produit #}
+                    <img class="product-image" src="{{ asset('assets/images/products/' ~ product.imageUrls[0]) }}" alt="{{ product.name }}"  >
+                </a>
+            </div>
+            {# Nom du produit #}
+            <div class="productname">
+                <h3>{{ product.name }}</h3>
+            </div>
+            {# Prix du produit #}
+            <div class="productprice">
+                <p>Prix : {{ product.price }} €</p>
+            </div>
+            {# Lien pour ajouter le produit au panier #}
+            <div class="addtocart">
+                <a href="{{ path('app_add_to_cart', {'productId': product.id, 'count': 1}) }}">Ajouter au panier</a>
+            </div>
+                                            
+        </div>            
+
+   
+</div>
     {% endfor %}
 {% endif %}
+
+
+{% endblock %}
