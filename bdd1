@@ -22,7 +22,7 @@ USE `eveilkids2`;
 -- Listage de la structure de table eveilkids2. address
 CREATE TABLE IF NOT EXISTS `address` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
+  `user_id` int DEFAULT NULL,
   `client_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `street` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `code_postal` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -32,17 +32,17 @@ CREATE TABLE IF NOT EXISTS `address` (
   `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
   `address_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `IDX_D4E6F81A76ED395` (`user_id`)
+  KEY `IDX_D4E6F81A76ED395` (`user_id`),
+  CONSTRAINT `FK_D4E6F81A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table eveilkids2.address : ~6 rows (environ)
+-- Listage des données de la table eveilkids2.address : ~5 rows (environ)
 INSERT INTO `address` (`id`, `user_id`, `client_name`, `street`, `code_postal`, `city`, `state`, `more_details`, `created_at`, `address_type`) VALUES
-	(5, 35, 'erezrz', 'ggyug', 'yugyugyu', 'gyugyugyu', 'gyugyug', 'ygyugyu', '2024-01-25 19:36:09', NULL),
-	(24, 39, 'layel layel', 'jean jaures', '67100', 'strasbourg', 'france', NULL, '2024-01-29 19:57:54', NULL),
-	(28, 50, 'derdeche', 'zzz', 'zzz', 'zz', 'zzz', 'zzz', '2024-02-02 09:20:49', NULL),
-	(30, 51, 'nihel', 'jhj', 'hjhjh', 'jhjhj', 'hjhjh', 'jhj', '2024-02-02 10:10:38', NULL),
-	(31, 52, 'derdeche', 'jkjk', 'kjkjkj', 'kjkjkj', 'kjkjk', 'jkjkjk', '2024-02-02 12:37:02', NULL),
-	(32, 39, 'layel layel', '111111111111', '11111111111', '11111111111', '111111111', '11111111111', '2024-02-02 12:55:24', NULL);
+	(33, NULL, 'layel', 'ytyty', 'tytyty', 'ytyty', 'ytyty', 'tytyty', '2024-02-07 14:41:09', NULL),
+	(34, NULL, 'kamel', 'avenue de colmar', '67100', 'strasbourg', 'france', NULL, '2024-02-13 07:58:37', NULL),
+	(35, NULL, 'kamel', 'strasbourg', '67100', 'strasbourg', 'france', NULL, '2024-02-13 08:26:56', NULL),
+	(36, NULL, 'asas', 'asasa', 'sasas', 'asasa', 'asas', NULL, '2024-02-13 13:43:02', NULL),
+	(39, 61, 'layel', '5 rue', '67100', 'strasbourg', 'france', NULL, '2024-02-17 11:01:18', NULL);
 
 -- Listage de la structure de table eveilkids2. category
 CREATE TABLE IF NOT EXISTS `category` (
@@ -54,10 +54,27 @@ CREATE TABLE IF NOT EXISTS `category` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table eveilkids2.category : ~0 rows (environ)
+-- Listage des données de la table eveilkids2.category : ~19 rows (environ)
 INSERT INTO `category` (`id`, `name`, `description`, `image_url`, `created_at`) VALUES
-	(1, '0 - 2 Ans', '<div>testtesttes</div>', '0-2.jpg', NULL),
-	(2, '2 - 4 Ans', NULL, '0-2.jpg', NULL);
+	(1, '0 à 2 Ans', NULL, NULL, NULL),
+	(2, '2 à 4 Ans', NULL, NULL, NULL),
+	(3, '5 à 7 Ans', NULL, NULL, '2024-02-18 16:32:27'),
+	(4, '8 à 12 Ans', NULL, NULL, '2024-02-18 16:33:16'),
+	(5, 'Mobilier et Rangement', NULL, NULL, '2024-02-18 16:33:48'),
+	(6, 'Motricité globale', NULL, NULL, '2024-02-18 16:34:13'),
+	(7, 'Tapis éducatifs', NULL, NULL, '2024-02-18 16:35:09'),
+	(8, 'Puzzles de 1 à 2 Ans', NULL, NULL, '2024-02-18 16:35:41'),
+	(9, 'Puzzles de 2 à 3 Ans', NULL, NULL, '2024-02-18 16:36:06'),
+	(10, 'Puzzles de 3 à 4 Ans', NULL, NULL, '2024-02-18 16:36:44'),
+	(11, 'Puzzles de 4 à 5 Ans', NULL, NULL, '2024-02-18 16:37:06'),
+	(12, 'Coffrets pour les tout-petits', NULL, NULL, '2024-02-18 16:37:29'),
+	(13, 'Coffrets 3 à 6 Ans', NULL, NULL, '2024-02-18 16:37:56'),
+	(14, 'Coffrets 6 à 13 Ans', NULL, NULL, '2024-02-18 16:38:23'),
+	(15, 'Coffrets dessin et peinture', NULL, NULL, '2024-02-18 16:38:45'),
+	(16, 'Livres montessori', NULL, NULL, '2024-02-18 16:39:08'),
+	(17, 'Livres à toucher', NULL, NULL, '2024-02-18 16:39:29'),
+	(18, 'Livres sonores', NULL, NULL, '2024-02-18 16:39:49'),
+	(19, 'Livres animés', NULL, NULL, '2024-02-18 16:40:14');
 
 -- Listage de la structure de table eveilkids2. doctrine_migration_versions
 CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
@@ -67,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Listage des données de la table eveilkids2.doctrine_migration_versions : ~8 rows (environ)
+-- Listage des données de la table eveilkids2.doctrine_migration_versions : ~14 rows (environ)
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20240111095051', '2024-02-01 17:48:33', 6),
 	('DoctrineMigrations\\Version20240130170028', '2024-02-01 17:48:33', 86),
@@ -124,8 +141,8 @@ CREATE TABLE IF NOT EXISTS `order` (
 
 -- Listage des données de la table eveilkids2.order : ~2 rows (environ)
 INSERT INTO `order` (`id`, `user_id`, `status`, `created_at`, `taxe`, `delivery_address`, `order_cost`, `order_cost_ht`) VALUES
-	(121, NULL, 'En attente de validation', '2024-02-02 12:37:23', 20, 'jkjk, kjkjkj, kjkjkj, kjkjkj', 23.98, NULL),
-	(122, NULL, 'En attente de validation', '2024-02-02 12:44:06', 20, 'jkjk, kjkjkj, kjkjkj, kjkjkj', 193.85, NULL);
+	(127, NULL, 'validée', '2024-02-07 14:22:45', 20, 'jean jaures, 67100, strasbourg, strasbourg', 25.98, NULL),
+	(151, 61, 'En attente de validation', '2024-02-16 20:26:00', 20, 'colmar, 67100, stras, stras', 83.91, NULL);
 
 -- Listage de la structure de table eveilkids2. order_detail
 CREATE TABLE IF NOT EXISTS `order_detail` (
@@ -140,13 +157,11 @@ CREATE TABLE IF NOT EXISTS `order_detail` (
   CONSTRAINT `FK_ED896F468D9F6D38` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table eveilkids2.order_detail : ~4 rows (environ)
+-- Listage des données de la table eveilkids2.order_detail : ~3 rows (environ)
 INSERT INTO `order_detail` (`id`, `order_id`, `product_id`, `quantity`) VALUES
-	(50, 121, 3, 1),
-	(51, 121, 5, 1),
-	(52, 122, 3, 9),
-	(53, 122, 5, 1),
-	(54, 122, 4, 5);
+	(81, 151, 5, 1),
+	(82, 151, 6, 3),
+	(83, 151, 7, 5);
 
 -- Listage de la structure de table eveilkids2. page
 CREATE TABLE IF NOT EXISTS `page` (
@@ -160,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `page` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table eveilkids2.page : ~1 rows (environ)
+-- Listage des données de la table eveilkids2.page : ~4 rows (environ)
 INSERT INTO `page` (`id`, `title`, `slug`, `content`, `is_head`, `is_foot`, `created_at`) VALUES
 	(2, 'Conditions Générales d\'Utilisation', 'bcvbvcb', '<div><br>1. <strong>Acceptation des Conditions</strong><br><br></div><div>En accédant ou en utilisant notre site web, vous acceptez sans réserve les présentes Conditions Générales d\'Utilisation. Si vous n\'acceptez pas ces conditions, veuillez ne pas utiliser notre site.<br><br></div><div><br>2<strong>. </strong>Compte Utilisateur<br><br></div><div>2.1. <strong>Création de Compte :</strong> Pour effectuer des achats sur notre site, vous devez créer un compte utilisateur. Vous garantissez que toutes les informations fournies lors de l\'inscription sont exactes et à jour.<br><br></div><div><br>2.2. <strong>Responsabilité du Compte :</strong> Vous êtes responsable de la confidentialité de votre compte et de votre mot de passe. Toute activité sur votre compte est de votre responsabilité.<br><br></div><div><br>3. Utilisation du Site<br><br></div><div>3.1. <strong>Utilisation Légale :</strong> Vous vous engagez à utiliser notre site conformément à toutes les lois et réglementations en vigueur.<br><br></div><div><br></div><div>4. Commandes et Paiements<br><br></div><div>4.1. <strong>Commandes :</strong> Toutes les commandes sont soumises à disponibilité et à confirmation de notre part. Nous nous réservons le droit d\'annuler toute commande, à notre seule discrétion.<br><br></div><div><br>4.2. <strong>Paiement :</strong> Les paiements sont traités de manière sécurisée. Vous garantissez que vous êtes le titulaire autorisé de la carte de paiement utilisée pour effectuer une commande.<br><br></div><div><br>5. Livraison<br><br></div><div>5.1. <strong>Délais de Livraison :</strong> Les délais de livraison sont estimés. Nous ne sommes pas responsables des retards dus à des événements indépendants de notre volonté.<br><br></div><div><br>6. Retours et Remboursements<br><br></div><div>6.1. <strong>Politique de Retour :</strong> Consultez notre politique de retour pour obtenir des informations sur les conditions de retour et de remboursement.<br><br></div><div><br>7. Modifications des CGU<br><br></div><div>7.1. <strong>Modification :</strong> Nous nous réservons le droit de modifier les présentes Conditions Générales d\'Utilisation à tout moment. Les modifications seront effectives dès leur publication sur le site.<br><br></div><div><br>8. Contact<br><br></div><div>Pour toute question concernant ces Conditions Générales d\'Utilisation, veuillez nous contacter à contact@Eveil-Kids.fr ou 07.66.57.32.39<br><br></div><div><br><br></div>', 0, 1, '2024-01-13 10:28:09'),
 	(3, 'Conditions Générales de Vente (CGV)', 'hfkjghskjgh', '<div><br>1. Objet<br><br></div><div>Les présentes Conditions Générales de Vente régissent les relations contractuelles entre Eveil-kids, ci-après dénommé le "Vendeur", et toute personne effectuant un achat sur le site Eveil-kids, ci-après dénommée le "Client".<br><br></div><div><br>2. Produits<br><br></div><div>2.1. <strong>Description des Produits :</strong> Les produits proposés à la vente sont décrits de manière détaillée sur notre site. Les photographies sont non contractuelles.<br><br></div><div><br>2.2. <strong>Disponibilité :</strong> Les offres de produits et les prix sont valables tant qu\'ils sont visibles sur le site, dans la limite des stocks disponibles.<br><br></div><div><br>3. Commandes<br><br></div><div>3.1. <strong>Processus de Commande :</strong> Le Client peut passer commande sur le site. La commande est confirmée par courrier électronique, incluant un récapitulatif des articles, des prix, des frais de livraison et des modalités de paiement.<br><br></div><div><br>3.2. <strong>Modification ou Annulation :</strong> Toute modification ou annulation de commande doit être effectuée avant l\'expédition des produits. Après expédition, les retours sont régis par notre Politique de Retour.<br><br></div><div><br>4. Prix et Paiement<br><br></div><div>4.1. <strong>Prix :</strong> Les prix sont indiqués en euros, toutes taxes comprises. Les frais de livraison sont en sus et sont précisés lors de la validation de la commande.<br><br></div><div><br>4.2. <strong>Modalités de Paiement :</strong> Le paiement s\'effectue en ligne par carte bancaire. Le Client garantit qu\'il est pleinement habilité à utiliser la carte de paiement pour le paiement de sa commande.<br><br></div><div><br>5. Livraison<br><br></div><div>5.1. <strong>Délais de Livraison :</strong> Les délais de livraison sont estimés et peuvent varier en fonction de la destination. Nous nous engageons à expédier les produits dans les meilleurs délais après réception du paiement.<br><br></div><div><br>5.2. <strong>Frais de Livraison :</strong> La livraison est gratuite sur tous les produits de notre site.<br><br></div><div><br>6. Droit de Rétractation<br><br></div><div>6.1. <strong>Droit de Rétractation :</strong> Le Client dispose d\'un délai de 14 jours à compter de la réception des produits pour exercer son droit de rétractation, conformément à notre Politique de Retour.<br><br></div><div><br>7. Garanties<br><br></div><div>7.1. <strong>Garanties Légales :</strong> Le Vendeur est tenu des défauts de conformité des produits et des vices cachés dans les conditions prévues par la loi.<br><br></div><div><br>8. Responsabilité<br><br></div><div>8.1. <strong>Responsabilité du Vendeur :</strong> Le Vendeur ne saurait être tenu responsable des dommages directs ou indirects résultant de l\'utilisation du site ou de la vente des produits.<br><br></div><div><br>9. Modifications des CGV<br><br></div><div>9.1. <strong>Modification :</strong> Les présentes CGV peuvent être modifiées à tout moment. Les modifications seront effectives dès leur publication sur le site.<br><br></div><div><br>10. Contact<br><br></div><div>Pour toute question concernant ces Conditions Générales de Vente, veuillez nous contacter à contact@Eveil-Kids.frl ou 07.66.57.32.39.<br><br></div><div><br><br></div>', 0, 1, '2024-01-13 10:29:05'),
@@ -191,16 +206,13 @@ CREATE TABLE IF NOT EXISTS `product` (
   CONSTRAINT `FK_D34A04AD12469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table eveilkids2.product : ~8 rows (environ)
+-- Listage des données de la table eveilkids2.product : ~5 rows (environ)
 INSERT INTO `product` (`id`, `category_id`, `name`, `additional_infos`, `more_description`, `stock`, `solde_price`, `brand`, `is_best_seller`, `is_special_offer`, `image_urls`, `created_at`, `slug`, `is_new_collection`, `is_preference`, `description`, `price`) VALUES
-	(3, 1, 'HOCHET ET ANNEAUX DE DENTITION', NULL, 'Dès la naissance', NULL, NULL, NULL, 1, 1, 'a:3:{i:0;s:45:"b8c32ed5bbeb22b4c3aebe01c5a83515c2ad071d.webp";i:1;s:45:"0ff9fcab5de6bb925a195e00f62b1ff5c77128b2.webp";i:2;s:45:"25f7082babbe7fc50c43a2ba59e0d2e56002e02e.webp";}', NULL, 'hochet-et-anneaux-de-dentition', 0, 1, 'Fabriqué à partir d\'un matériau sûr à base de riz japonais, le hochet au visage joyeux est livré avec trois anneaux à cliquetis mobiles pour stimuler la conscience sensorielle, et un anneau à mâcher pour les dents.', 14.99),
-	(4, 1, 'TRIO DE HOCHETS GÉOMÉTRIQUES', 'Dès la naissance1.', 'Fabriqué à partir de matériaux à base de riz.', NULL, NULL, NULL, 0, 1, 'a:4:{i:0;s:45:"d3464c23d2c672bb0ba03215f7221677be0c895a.webp";i:1;s:45:"80e16e98f1d4d260fbf2596f0481aa936dd0046e.webp";i:2;s:45:"b8a35814d1d2cc423469233b0432eea82b210751.avif";i:3;s:45:"bb80a834bb7c9f60a9bd90cf1167472b6d16cd18.webp";}', NULL, 'trio-de-hochets-geometriques', 0, 1, 'Le trio de hochets géométriques aux couleurs douces, a été soigneusement conçu pour s\'adapter parfaitement aux petites mains ; Lorsque ce trio de hochets sera secoué et que votre enfant jouera avec, il contribuera à développer ses capacités de coordination œil-main.', 9.99),
-	(5, 1, '3 BALLES SENSORIELLES « BLEUES »', NULL, 'Diamètre : 15 et 8 cm. Dès 6 mois.', NULL, NULL, NULL, 0, 1, 'a:4:{i:0;s:45:"03cc8b8d12fcf8258594328c5f85c8d6a933adbc.webp";i:1;s:45:"7944a2ecb80c2b9ca7951f405b072652b58e3205.webp";i:2;s:45:"f461eeb0e801759befd87f63b981b216b7327fbf.webp";i:3;s:45:"b82eb03036e47e42dc7ef091e5afb5bdd5a60e4a.webp";}', NULL, '3-balles-sensorielles-bleues', 0, 1, 'Ce coffret de 3 balles sensorielles de différentes tailles, nervurées, à picots et aux textures douces éveille les sens de Bébé, développe sa dextérité et sa motricité fine. \'ÉVEIL N\'A JAMAIS ÉTÉ AUSSI DRÔLE !Les balles sensorielles « bleues » se prêtent à une multitude de jeux. Nervurée, lisse ou à picots, grande ou petite toutes les balles stimulent le sens du toucher, la dextérité et la coordination des mouvements de Bébé. Leur matière en plastique souple et légère soulage les petites dents de Bébé et garantit une hygiène parfaite ! Adapté pour les petits dès 6 mois, ce coffret de 3 balles sensorielles « bleues » attire l\'attention de Bébé qui sera intrigué par ces jolies couleurs vives et ses textures. Leur petite taille facilite la prise en main.DANS CE COFFRET, VOUS RETROUVEREZ DIFFÉRENTES BALLES SENSORIELLES : 2 petites balles nervurées au toucher velouté pour plus de douceur et 1 grande balle bicolore, à picots tendres pour les massages ou parties de chatouilles.De nombreuses occasions pour jouer, s\'amuser et partager des moments de complicité en famille !', 8.99),
-	(6, 1, 'DISQUES SUR QUATRE TIGES VERTICALES', NULL, NULL, NULL, NULL, NULL, 0, 0, 'a:2:{i:0;s:45:"03deea27dcfd6c7953a0abb8d70f675bbe8233aa.webp";i:1;s:45:"d48bd54f5d16dfcc189d41e4a5b922762959a174.webp";}', NULL, 'disques-sur-quatre-tiges-verticales', 0, 1, 'En empilant un à un les disques colorés sur la tige verticale en bois de la manière la plus ordonnée possible, l’enfant de 0 à 3 ans consolide :<br>- </strong>son sens de l’observation,<br>- sa motricité fine<br>- sa coordination œil/main.<br>Il ordonne sa pensée en triant les objets selon leur couleur et a la possibilité d’avoir une introduction aux noms des couleurs par le jeu !<br><br>Ce jeu d’encastrement lui permet de construire :<br>son intelligence,<br><br></div><div>- son esprit logique<br><br></div><div>- de développer sa capacité de concentration.L’activité a un but direct précis : trier et enfiler correctement les disques en dégradé.L’enfant de 0 à 3 ans peut alors s’amuser à s’entrainer encore et encore à atteindre ce but de la manière la plus ordonnée possible.Cela lui donne alors la possibilité d’ordonner sa propre pensée et favorise le développement de son intelligence et de la confiance en lui-même.Pour atteindre son but l’enfant va pouvoir répéter autant de fois qu’il le souhaite l’activité et les gestes nécessaires.Il se perfectionne, et développe sa concentration. Dès 2 ans Ambiance 0-3 ans Poids : 0.40 kg', 9.99),
-	(7, 1, 'ECHELLE DE CYLINDRES COLORÉS', NULL, '<div><strong>Poids</strong> : 0.75 kg<br><br></div><div><strong>Dimensions</strong> : 21 × 98 × 21 cm<br><br></div><div>Dès 2 ans</div>', NULL, NULL, NULL, 0, 0, 'a:4:{i:0;s:45:"e5efec469ad9610116bdf20d41dd2f47c34856b2.webp";i:1;s:45:"6964c9f611baf2dee0e6caa03e7cc4ff6f1e62b5.webp";i:2;s:45:"a383162594f3dba9b85cc1375548071bbb1d0ec8.webp";i:3;s:45:"3d04a58ee4c0fc43b210dacbd72933e134d741a7.webp";}', NULL, 'echelle-de-cylindres-colores', 0, 1, '<div><strong>L\'échelle à cylindre est le complément idéal à l\'environnement familial ou préscolaire, offrant aux enfants de nombreuses possibilités d\'exploration et d\'apprentissage.</strong><br><br>- Ce matériel est évolutif et peut être utilisé pour une gamme d\'exercices allant de l\'amélioration de la dextérité d\'un enfant en bas âge à l\'introduction du concept de fractions par empilement, avec beaucoup plus de possibilités entre les deux.<br><br></div><div>Ambiance 0-3 ans<br><br></div>', 8.99),
-	(8, NULL, 'SET DE 5 CANARDS DE BAIN', NULL, '<div><strong>Dès la naissance.</strong></div>', NULL, NULL, NULL, 0, 0, 'a:3:{i:0;s:45:"195af9abf14823bd4ee1ce3dac70656ae662998a.webp";i:1;s:45:"3abbba8c2d1d880d318cabfc846b7ffb53cf2140.webp";i:2;s:45:"a8c273f98d02b8fa8167208f1d57fdef15cd9906.webp";}', NULL, 'set-de-5-canards-de-bain', 0, 1, '<div><strong>Ces 5 canetons pour la baignoire en plus d\'être très amusants et divertissants, sont totalement sans danger pour votre bébé car ils sont sans plomb ni phtalates.<br>&nbsp;<br>-&nbsp;</strong>&nbsp;Ils sont si beaux que même si ce n\'est pas l\'heure du bain, ils auront fière allure dans la salle de bain.<br><br></div>', 3.99),
-	(9, 2, 'TAPIS DALLES CHIFFRES', NULL, '<div><br>POUR UNE VIE DOUCE ET COLORÉE !<br><br></div><div>La matière en mousse des 9 dalles Chiffres, isole du froid et amortit les chocs. Elle résiste aux petites dents et sa texture stimule la motricité fine de bébé. Accrochées les unes aux autres, les dalles offrent à bébé un superbe tapis de jeu de 90 x 90 cm, idéal pour marcher à quatre pattes ou pour s’amuser avec ses jouets préférés. Solides, les dalles Chiffres s’encastrent bien les unes aux autres et leur épaisseur (1,2 cm) assure un confort pour les enfants.<br><br></div><div>En plus du grand puzzle, les chiffres proposent également une activité d’encastrement.<br>Les différentes textures, les couleurs et les motifs encouragent la motricité et l’acuité visuelle de votre enfant tout en stimulant son imagination. En grandissant les enfants pourront apprendre et réviser les chiffres !<br><br></div><div>Les 9 dalles Chiffres peuvent être utilisées en intérieur, en tapis de jeu, et en extérieur sur une surface plane non glissante.<br><br></div><div><strong>Dimensions du tapis : 90 x 90 x 1,2 cm.</strong><br><strong>Dimensions d’une dalle : 32 x 32 x 1,2cm.<br></strong><br></div><div><strong>Dès 10 mois</strong></div>', NULL, NULL, NULL, 0, 0, 'a:4:{i:0;s:45:"c999a3551c15d725e8f83779ad71a665815c7454.webp";i:1;s:45:"75c73da12c718af3342e85ed9fb50fcbef6f3be6.webp";i:2;s:45:"8d81ace90c0a728ee56d66412b0fabcb482e02b2.webp";i:3;s:45:"fe68c7a483d1981f5d00e14befeb2643d82c41de.webp";}', NULL, 'tapis-dalles-chiffres', 0, 1, '<div><strong>Les 9 dalles aux couleurs dynamiques forment un tapis qui isole l’enfant du froid et amortit les chocs. C’est aussi un puzzle géant avec les chiffres à encastrer au bon endroit !<br></strong><br></div><div><strong><br>9 DALLES CHIFFRES AUX COULEURS VIVES POUR JOUER EN TOUT SÉCURITÉ…<br></strong><br></div><div>Confortables, hygiéniques, colorées et aux textures travaillées, les dalles en mousse de LUDI accompagneront bébé dans ses premiers jeux en toute sécurité !<br><br></div>', 15.99),
-	(10, 1, 'TAPIS D’ÉVEIL « CHOUETTE »', NULL, '<div>Idéale pour stimuler la motricité de Bébé et développer sa dextérité, vous pourrez également éveiller l’acuité visuelle de votre enfant grâce aux accessoires sensoriels présents sur les arches : miroir, hochet, pouêt-pouêt, papier bruyant… et les petits amis de la forêt qui ornent le tapis.<br><br></div><div>À noter que ce produit est évolutif : en rabattant les côtés du tapis d’éveil, formez un petit cocon sécurisant pour votre Bébé ! Le tapis prend facilement place dans un parc.<br><br></div><div><strong>Les dimensions :<br></strong><br></div><ul><li><strong>Du produit : 110 x 90 x 48 cm.</strong></li><li><strong>Du tapis : 110 x 90 x 2 cm.</strong></li><li><strong>Des arches amovibles : 150 x ø 3 cm.</strong></li></ul><div><br></div><div><strong>Dès la naissance</strong></div>', NULL, NULL, NULL, 0, 0, 'a:6:{i:0;s:45:"031ad2b2674265880689a8b241b3c57df1805729.webp";i:1;s:45:"80d2a653bab288cd89bc0b391f840e6477282d62.webp";i:2;s:45:"a16d1a968679c178f0a63a78884e3997e1f9cca7.webp";i:3;s:45:"29ba238e37738f88592dedad9e59c87b74aebbf9.webp";i:4;s:45:"46256ac5d2146a0c0f0d16dddb1c61f241329dce.webp";i:5;s:45:"5d45b258b1538a387812c18d66ca2eff803bd33d.webp";}', NULL, 'tapis-deveil-chouette', 0, 1, '<div><strong>Un tapis de jeu épais et moelleux où Bébé peut gigoter et s’amuser confortablement en toute sérénité. Sur les arches amovibles, des activités sensorielles pour l’éveil des petits !<br></strong><br></div><div><strong><br>UN TAPIS D’ÉVEIL VRAIMENT CHOUETTE !<br></strong><br></div><div>Tout moelleux, tout doux, le tapis d’éveil « Chouette » permet à Bébé de s’amuser et de se reposer sous le regard de ses parents. Multicolore avec des formes amusantes et des textures différentes, cet espace dédié à l’éveil attire la curiosité de Bébé.<br><br></div>', 25.99);
+	(3, 1, 'HOCHET ET ANNEAUX DE DENTITION', NULL, 'Dès la naissance.', NULL, NULL, NULL, 1, 1, 'a:3:{i:0;s:45:"b8c32ed5bbeb22b4c3aebe01c5a83515c2ad071d.webp";i:1;s:45:"0ff9fcab5de6bb925a195e00f62b1ff5c77128b2.webp";i:2;s:45:"25f7082babbe7fc50c43a2ba59e0d2e56002e02e.webp";}', NULL, 'hochet-et-anneaux-de-dentition', 1, 1, 'Fabriqué à partir d\'un matériau sûr à base de riz japonais, le hochet au visage joyeux est livré avec trois anneaux à cliquetis mobiles pour stimuler la conscience sensorielle, et un anneau à mâcher pour les dents.', 14.99),
+	(4, 1, 'TRIO DE HOCHETS GÉOMÉTRIQUES', 'Dès la naissance1.', 'Fabriqué à partir de matériaux à base de riz.', NULL, NULL, NULL, 1, 1, 'a:4:{i:0;s:45:"d3464c23d2c672bb0ba03215f7221677be0c895a.webp";i:1;s:45:"80e16e98f1d4d260fbf2596f0481aa936dd0046e.webp";i:2;s:45:"b8a35814d1d2cc423469233b0432eea82b210751.avif";i:3;s:45:"bb80a834bb7c9f60a9bd90cf1167472b6d16cd18.webp";}', NULL, 'trio-de-hochets-geometriques', 1, 1, 'Le trio de hochets géométriques aux couleurs douces, a été soigneusement conçu pour s\'adapter parfaitement aux petites mains ; Lorsque ce trio de hochets sera secoué et que votre enfant jouera avec, il contribuera à développer ses capacités de coordination œil-main.', 9.99),
+	(5, 1, '3 BALLES SENSORIELLES « BLEUES »', 'Diamètre : 15 et 8 cm. Dès 6 mois.', 'Nervurée, lisse ou à picots, grande ou petite toutes les balles stimulent le sens du toucher, la dextérité et la coordination des mouvements de Bébé. Leur matière en plastique souple et légère soulage les petites dents de Bébé et garantit une hygiène parfaite ! Adapté pour les petits dès 6 mois, ce coffret de 3 balles sensorielles « bleues » attire l\'attention de Bébé qui sera intrigué par ces jolies couleurs vives et ses textures. Leur petite taille facilite la prise en main.', NULL, NULL, NULL, 1, 1, 'a:4:{i:0;s:45:"03cc8b8d12fcf8258594328c5f85c8d6a933adbc.webp";i:1;s:45:"7944a2ecb80c2b9ca7951f405b072652b58e3205.webp";i:2;s:45:"f461eeb0e801759befd87f63b981b216b7327fbf.webp";i:3;s:45:"b82eb03036e47e42dc7ef091e5afb5bdd5a60e4a.webp";}', NULL, '3-balles-sensorielles-bleues', 1, 1, 'Ce coffret de 3 balles sensorielles de différentes tailles, nervurées, à picots et aux textures douces éveille les sens de Bébé, développe sa dextérité et sa motricité fine. \'ÉVEIL N\'A JAMAIS ÉTÉ AUSSI DRÔLE !Les balles sensorielles « bleues » se prêtent à une multitude de jeux.', 8.99),
+	(6, 1, 'DISQUES SUR QUATRE TIGES VERTICALES', 'Poids : 0.40 kg', 'Dès 2 ans Ambiance 0-3 ans', NULL, NULL, NULL, 1, 1, 'a:2:{i:0;s:45:"03deea27dcfd6c7953a0abb8d70f675bbe8233aa.webp";i:1;s:45:"d48bd54f5d16dfcc189d41e4a5b922762959a174.webp";}', NULL, 'disques-sur-quatre-tiges-verticales', 1, 1, 'En empilant un à un les disques colorés sur la tige verticale en bois de la manière la plus ordonnée possible, l’enfant de 0 à 3 ans ordonne sa pensée en triant les objets selon leur couleur et a la possibilité d’avoir une introduction aux noms des couleurs par le jeu ! Ce jeu d’encastrement lui permet de construire : son intelligence,son esprit logique.', 9.99),
+	(7, 1, 'ECHELLE DE CYLINDRES COLORÉS', 'Dès 2 ans', 'Ce matériel est évolutif et peut être utilisé pour une gamme d\'exercices allant de l\'amélioration de la dextérité d\'un enfant en bas âge à l\'introduction du concept de fractions par empilement, avec beaucoup plus de possibilités entre les deux.', NULL, NULL, NULL, 1, 1, 'a:4:{i:0;s:45:"e5efec469ad9610116bdf20d41dd2f47c34856b2.webp";i:1;s:45:"6964c9f611baf2dee0e6caa03e7cc4ff6f1e62b5.webp";i:2;s:45:"a383162594f3dba9b85cc1375548071bbb1d0ec8.webp";i:3;s:45:"3d04a58ee4c0fc43b210dacbd72933e134d741a7.webp";}', NULL, 'echelle-de-cylindres-colores', 1, 1, 'L\'échelle à cylindre est le complément idéal à l\'environnement familial ou préscolaire, offrant aux enfants de nombreuses possibilités d\'exploration et d\'apprentissage.\r\nAmbiance 0-3 ans.', 8.99);
 
 -- Listage de la structure de table eveilkids2. slider
 CREATE TABLE IF NOT EXISTS `slider` (
@@ -213,11 +225,11 @@ CREATE TABLE IF NOT EXISTS `slider` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table eveilkids2.slider : ~2 rows (environ)
+-- Listage des données de la table eveilkids2.slider : ~3 rows (environ)
 INSERT INTO `slider` (`id`, `title`, `description`, `button_link`, `created_at`, `image_url`) VALUES
-	(1, 'MONTESSORI', 'JOUETS EDUCATIFS', 'Découvrir', '2024-01-11 13:58:16', 'b276c5efc7d35bc9785fa33ca6f4065af977241a.jpg'),
-	(2, NULL, 'Nouvelle Collection 2024', 'Découvrir', '2024-01-16 13:12:59', '960d7e6cbadc5477fa84a1e0c1d694ea36ca94a9.jpg'),
-	(3, 'Nos Meilleurs Vente', NULL, 'Aller voir', '2024-02-03 09:19:46', 'ac3546f4d86193dc39407293a948c0cd28ba0e99.jpg');
+	(1, 'MONTESSORI', 'JOUETS EDUCATIFS', 'Découvrir', '2024-01-11 13:58:16', 'd6c6baf814dd889664704d52154edf4702a3ca3f.jpg'),
+	(2, NULL, 'Nouvelle Collection 2024', 'Découvrir', '2024-01-16 13:12:59', '44e40c4e3076dba1d040507b9dd67a86feac5426.jpg'),
+	(3, 'Nos Meilleurs Vente', NULL, 'Aller voir', '2024-02-03 09:19:46', '5dde2308be280c0f084af44106f379aed4a1e31f.jpg');
 
 -- Listage de la structure de table eveilkids2. slider_product
 CREATE TABLE IF NOT EXISTS `slider_product` (
@@ -249,7 +261,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Listage des données de la table eveilkids2.user : ~2 rows (environ)
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `is_verified`, `pseudo`, `created_at`, `updated_at`) VALUES
 	(35, 'foued@gmail.com', '["ROLE_ADMIN"]', '$2y$13$eFwwIoKgrszc7UcUtGOx1eHnCFo9W..Q3/JXfH2pez3GFiV1q0.q.', 1, 'foued', '2024-01-23 08:43:14', '2024-01-23 08:43:14'),
-	(39, 'layel@gmail.com', '[]', '$2y$13$m/He9kncJW8yuD672/0ixOkZJA8w4XXtzQiD7kUSRjK0Wr6ceh5J2', 1, 'layel', '2024-01-24 11:39:52', '2024-01-24 11:39:52');
+	(61, 'layel@gmail.com', '[]', '$2y$13$FYynqaq3JPVrmzv3kIgVw.tS.PiZ4U7tY9qWuWupkLuztwZSRKxjC', 1, 'layel', '2024-02-16 18:27:17', '2024-02-16 18:27:17');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
