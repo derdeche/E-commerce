@@ -60,8 +60,8 @@
 /* Styles de survol et d'activation pour le bouton du slider 1 */
 .sliderbutton-1:active {
     color: white;
-    transform: translateY(0.2rem);
-    width: 130px;
+    /* transform: translateY(0.2rem); */
+    /* width: 130px; */
     
 }
 
@@ -132,8 +132,8 @@
 /* Styles de survol et d'activation pour le bouton du slider 2 */
 .sliderbutton-2:active {
     color: white;
-    transform: translateY(0.2rem);
-    width: 130px;
+    /* transform: translateY(0.2rem);
+    width: 130px; */
 }
 
 .sliderbutton-2:hover:not(:disabled) {
@@ -201,8 +201,8 @@
 /* Styles de survol et d'activation pour le bouton du slider 3 */
 .sliderbutton-3:active {
     color: white;
-    transform: translateY(0.2rem);
-    width: 130px;
+    /* transform: translateY(0.2rem); */
+    /* width: 130px; */
 }
 
 .sliderbutton-3:hover:not(:disabled) {
