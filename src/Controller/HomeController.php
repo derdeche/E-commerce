@@ -101,10 +101,6 @@ class HomeController extends AbstractController
 
         // on vérifie si la catégorie existe
         $category = $categoryRepo->find($categoryId);
-        if (!$category) {
-        // Si la catégorie n'existe pas, redirigez vers la page d'accueil
-            return $this->redirectToRoute('app_home');
-        }
         
         // on utilise l'EntityManager pour créer une requête DQL
         $query = $entityManager->createQuery(
@@ -113,9 +109,13 @@ class HomeController extends AbstractController
             JOIN p.category c
             WHERE c.id = :categoryId'
         )->setParameter('categoryId', $categoryId);
-
-        // on obtient les résultats de la requête
         $products = $query->getResult();
+        
+        if (!$category) {
+        // Si la catégorie n'existe pas, redirigez vers la page d'accueil
+            return $this->redirectToRoute('app_home');
+        }
+        // on obtient les résultats de la requête
 
 
         // on récupére le paramètre de tri
